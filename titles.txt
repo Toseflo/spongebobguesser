@@ -9,3 +9,33 @@ S01E04P1 Naughty Nautical Neighbors
 S01E04P2 Boating School
 S01E05P1 Pizza Delivery
 S01E05P2 Home Sweet Pineapple
+S01E06P1 Mermaid Man and Barnacle Boy
+S01E06P2 Pickles
+S01E07P1 Hall Monitor
+S01E07P2 Jellyfish Jam
+S01E08P1 Sandy's Rocket
+S01E08P2 Squeaky Boots
+S01E09P1 Nature Pants
+S01E09P2 Opposite Day
+S01E10P1 Culture Shock
+S01E10P2 F.U.N.
+S01E11P1 MuscleBob BuffPants
+S01E11P2 Squidward the Unfriendly Ghost
+S01E12P1 The Chaperone
+S01E12P2 Employee of the Month
+S01E13P1 Scaredy Pants
+S01E13P2 I Was a Teenage Gary
+S01E14P1 SB-129
+S01E14P2 Karate Choppers
+S01E15P1 Sleepy Time
+S01E15P2 Suds
+S01E16P1 Valentine’s Day
+S01E16P2 The Paper
+S01E17P1 Arrgh!
+S01E17P2 Rock Bottom
+S01E18P1 Texas
+S01E18P2 Walking Small
+S01E19P1 Fools in April
+S01E19P2 Neptune’s Spatula
+S01E20P1 Hooky
+S01E20P2 Mermaid Man and Barnacle Boy II
