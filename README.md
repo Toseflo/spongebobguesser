@@ -1,5 +1,7 @@
 I made a little game where you get a random screenshot of SpongeBob SquarePants and you have to guess which episode it is from.
 
+Play the game at https://toseflo.github.io/spongebobguesser/
+
 Thanks to V3ctoor for making the code of his Avatar Guesser game public.
 
 ## How to add new screenshots:
