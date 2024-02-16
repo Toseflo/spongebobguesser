@@ -1,7 +1,7 @@
 S01E01P1 Help Wanted
 S01E01P2 Reef Blower
 S01E01P3 Tea at the Treedome
-S01E02P1 Bubbestand
+S01E02P1 Bubblestand
 S01E02P2 Ripped Pants
 S01E03P1 Jellyfishing
 S01E03P2 Plankton!
@@ -29,13 +29,13 @@ S01E14P1 SB-129
 S01E14P2 Karate Choppers
 S01E15P1 Sleepy Time
 S01E15P2 Suds
-S01E16P1 Valentine’s Day
+S01E16P1 Valentine's Day
 S01E16P2 The Paper
 S01E17P1 Arrgh!
 S01E17P2 Rock Bottom
 S01E18P1 Texas
 S01E18P2 Walking Small
 S01E19P1 Fools in April
-S01E19P2 Neptune’s Spatula
+S01E19P2 Neptune's Spatula
 S01E20P1 Hooky
 S01E20P2 Mermaid Man and Barnacle Boy II
