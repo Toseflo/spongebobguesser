@@ -208,9 +208,9 @@
             });
     }
 
-    // Store the last half of the episodes to prevent repeats and make it feel more random
+    // Store the last 20% the episodes to prevent repeats and make it feel more random
     function addToLastEpisodeList(value) {
-        if (previousEpisodeList.length >= Math.floor(episodeCount / 2)) {
+        if (previousEpisodeList.length >= Math.floor(episodeCount / 5)) {
             // Shift removes and returns the first element
             previousEpisodeList.shift();
         }
