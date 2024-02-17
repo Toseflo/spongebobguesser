@@ -145,27 +145,28 @@
     const feedback = document.getElementById('feedback');
     const scoreElement = document.getElementById('score');
     const highScoreElement = document.getElementById('high-score');
+    let previousEpisodeList = [];
+    let episodeKeys = [];
+    let keyedEpisodeNames = {};
+    let keyedImageList = {};
+    let episodeCount = 0;
 
     // Hide the "Try Again" button by default
     tryAgainButton.style.display = 'none';
     // Load the high score from local storage
     checkHighScore();
 
-    // Fetch the episode keys from the image-list JSON file
-    let episodeKeys = [];
-    let keyedImageList = {};
+    // Fetch the image list and episode titles from the JSON files
     fetch('image-list.json')
         .then(response => response.json())
         .then(data => {
             keyedImageList = data;
             episodeKeys = Object.keys(keyedImageList);
+            episodeCount = episodeKeys.length;
 
-            console.log(episodeKeys);
-            console.log(keyedImageList);
-        });
-
-    // Fetch the language-names from the episode-titles JSON file
-    fetch('episode-titles.json')
+            // After the first fetch is completed, initiate the second fetch
+            return fetch('episode-titles.json');
+        })
         .then(response => response.json())
         .then(data => {
             const languageSelect = document.getElementById('language-select');
@@ -186,7 +187,6 @@
         loadEpisodeNames(event.target.value);
     });
 
-    let keyedEpisodeNames = {};
     function loadEpisodeNames(language) {
         episodeGuessInput.value = "";
 
@@ -208,20 +208,18 @@
             });
     }
 
-    const lastEpisodes = [];
-    const episodeCount = episodeKeys.length;
     // Store the last half of the episodes to prevent repeats and make it feel more random
     function addToLastEpisodeList(value) {
-        if (lastEpisodes.length >= Math.floor(episodeCount / 2)) {
+        if (previousEpisodeList.length >= Math.floor(episodeCount / 2)) {
             // Shift removes and returns the first element
-            lastEpisodes.shift();
+            previousEpisodeList.shift();
         }
-        lastEpisodes.push(value);
+        previousEpisodeList.push(value);
     }
 
     function getRandomEpisodeKey() {
         let randomEpisodeKey = episodeKeys[Math.floor(Math.random() * episodeKeys.length)];
-        if (lastEpisodes.includes(randomEpisodeKey)) {
+        if (previousEpisodeList.includes(randomEpisodeKey)) {
             return getRandomEpisodeKey();
         }
         addToLastEpisodeList(randomEpisodeKey);
@@ -296,8 +294,6 @@
         scoreElement.innerText = "Score: " + score;
         highScoreElement.style.color = "#000";
     }
-
-    tryAgainButton.addEventListener('click', resetGame);
 </script>
 </body>
 </html>
