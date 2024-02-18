@@ -269,9 +269,6 @@
     function showNewImage(encodedImage) {
         imageContainer.style.backgroundImage = 'url("' + encodedImage + '")';
         episodeGuessInput.value = "";
-        episodeGuessInput.style.display = 'block';
-        guessButton.style.display = 'block';
-        tryAgainButton.style.display = 'none';
         feedback.innerText = '';
     }
 
@@ -328,6 +325,7 @@
             } else {
                 episodeGuessInput.style.display = 'none';
                 guessButton.style.display = 'none';
+                jokerButton.style.display = 'none';
                 tryAgainButton.style.display = 'block';
                 feedback.innerText = "You guessed " + guess + ", but the correct answer is " + currentEpisodeName + ".";
             }
@@ -361,7 +359,13 @@
     }
 
     function resetGame() {
-        score = 0; // reset the score when "Try Again" is clicked
+        score = 0;
+
+        episodeGuessInput.style.display = 'block';
+        guessButton.style.display = 'block';
+        jokerButton.style.display = 'block';
+        tryAgainButton.style.display = 'none';
+
         showRandomImage();
         scoreElement.innerText = "Score: " + score;
         highScoreElement.style.color = "#000";
