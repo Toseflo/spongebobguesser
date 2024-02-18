@@ -7,10 +7,15 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away-subtle.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <style>
         body {
-            font-family: Verdana, sans-serif;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         #image-container {
@@ -47,15 +52,18 @@
             font-size: 1.3em;
         }
 
+        #no-season-label,
         #guess-input {
             display: block;
             width: 600px;
             margin: 20px auto;
             padding: 10px;
             font-size: 1.3em;
+            text-align: center;
         }
 
-        #language-select {
+        #language-select,
+        #season-select {
             display: block;
             width: 210px;
             margin: 10px auto;
@@ -64,7 +72,8 @@
         }
 
         #guess-input,
-        #language-select {
+        #language-select,
+        #season-select {
             border-radius: 8px;
         }
 
@@ -87,16 +96,21 @@
         }
 
         .select-group label {
-            font-family: Verdana, sans-serif;
             font-size: 1em;
         }
 
         .container {
             display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: -40px auto 20px;
+            width: 90%;
         }
 
         .column {
             flex: 1;
+            text-align: center;
         }
 
         @media (max-aspect-ratio: 3/2) {
@@ -115,14 +129,18 @@
 </head>
 <body>
 <div id="image-container"></div>
+<label id="no-season-label">You have to select at least one season</label>
 <input id="guess-input" list="episode-names" placeholder="Guess the episode...">
 <div id="feedback"></div>
 <div class="container">
-    <div class="column"></div>
     <div class="column">
         <div class="select-group">
-            <label for="language-select">Language of episode titles:</label>
+            <label for="language-select">Language:</label>
             <select id="language-select"></select>
+        </div>
+        <div class="select-group">
+            <label for="season-select">Seasons:</label>
+            <select id="season-select" multiple></select>
         </div>
     </div>
     <div class="column"></div>
@@ -139,7 +157,6 @@
         <div id="score">Score: 0</div>
         <div id="high-score">High Score: 0</div>
     </div>
-    <div class="column"></div>
 </div>
 
 <datalist id="episode-names">
@@ -147,11 +164,9 @@
 </datalist>
 
 <script>
-    let score = 0;
-    let currentEpisode = "";
-    let currentImage = "";
     const languageSelect = document.getElementById('language-select');
     const episodeNamesList = document.getElementById('episode-names');
+    const noSeasonLabel = document.getElementById('no-season-label');
     const episodeGuessInput = document.getElementById('guess-input');
     const imageContainer = document.getElementById('image-container');
     const guessButton = document.getElementById('guess-button');
@@ -160,15 +175,29 @@
     const feedback = document.getElementById('feedback');
     const scoreElement = document.getElementById('score');
     const highScoreElement = document.getElementById('high-score');
-    let previousEpisodeList = [];
-    let episodeKeys = [];
+    const seasonSelect = $('#season-select');
+    let imagesJsonData = {};
+    let titlesJsonData = {};
+    let seasonsJsonData = {};
     let keyedEpisodeNames = {};
-    let keyedImageList = {};
+    let allowedSeasonKeys = [];
+    let allowedEpisodeKeyList = [];
     let episodeCount = 0;
+    let previouslyShownEpisodes = [];
     let imagesShownDuringJoker = [];
     const scoreToGetNewJoker = 30;
     const startingJokers = 3;
     let jokerUsesLeft = startingJokers;
+    let fetchDone = false;
+    let score = 0;
+    let currentEpisodeKey = "";
+    let currentImageKey = "";
+
+    $(document).ready(function() {
+        $("#season-select").select2({
+            multiple: true
+        });
+    });
 
     function updateJokerButton(usesLeft) {
         jokerButton.innerHTML = `
@@ -182,28 +211,39 @@
         animation: 'shift-away-subtle',
     });
 
-    updateJokerButton(jokerUsesLeft);
-
-    // Hide the "Try Again" button by default
+    noSeasonLabel.style.display = 'none';
     tryAgainButton.style.display = 'none';
-    // Load the high score from local storage
+    updateJokerButton(jokerUsesLeft);
     checkHighScore();
 
-    // Fetch the image list and episode titles from the JSON files
-    fetch('image-list.json')
+    // First fetch the season keys from the season-keys JSON file
+    fetch('season-keys.json')
         .then(response => response.json())
         .then(data => {
-            keyedImageList = data;
-            episodeKeys = Object.keys(keyedImageList);
-            episodeCount = episodeKeys.length;
+            seasonsJsonData = data;
+            allowedSeasonKeys = Object.keys(seasonsJsonData);
+            seasonSelect
+                .empty() // Clear existing options
+                .append(allowedSeasonKeys.map(seasonKey => new Option(seasonKey, seasonKey))) // Append new options
+                .val(allowedSeasonKeys)
+                .trigger('change')
+                .select2({
+                    closeOnSelect: false
+                });
 
-            // After the first fetch is completed, initiate the second fetch
+            // After that fetch the image list from the image-list JSON file
+            return fetch('image-list.json');
+        })
+        .then(response => response.json())
+        .then(data => {
+            imagesJsonData = data;
+
+            // After that fetch the language keys from the episode-titles JSON file and populate the language select
             return fetch('episode-titles.json');
         })
         .then(response => response.json())
         .then(data => {
-            const languageSelect = document.getElementById('language-select');
-
+            titlesJsonData = data;
             for (let language in data) {
                 let option = document.createElement('option');
                 option.value = language; // Set the value of the option
@@ -211,53 +251,77 @@
                 languageSelect.appendChild(option);
             }
 
-            loadEpisodeNames(languageSelect.value);
+            fetchDone = true;
+            loadEpisodeNames();
             showRandomImage();
         });
+
+    function loadEpisodeNames() {
+        episodeGuessInput.value = "";
+
+        allowedEpisodeKeyList = [];
+        for (let seasonKey of allowedSeasonKeys) {
+            allowedEpisodeKeyList = allowedEpisodeKeyList.concat(seasonsJsonData[seasonKey]);
+        }
+        episodeCount = allowedEpisodeKeyList.length;
+
+        // Clear the episode names list
+        episodeNamesList.innerHTML = "";
+
+        // Fill the episode names list with the episode names from the episodes object
+        keyedEpisodeNames = titlesJsonData[languageSelect.value];
+        for (const episodeKey of allowedEpisodeKeyList) {
+            let option = document.createElement('option');
+            option.value = keyedEpisodeNames[episodeKey]; // Set the value of the option
+            episodeNamesList.appendChild(option);
+        }
+    }
 
     // Add an event listener for when the language select changes
     languageSelect.addEventListener('change', (event) => {
         loadEpisodeNames(event.target.value);
     });
 
-    function loadEpisodeNames(language) {
-        episodeGuessInput.value = "";
+    seasonSelect.on('change', function() {
+        allowedSeasonKeys = $(this).val();
+        if (!fetchDone) return;
 
-        // Fetch the episode titles from the episode-titles JSON file
-        fetch('episode-titles.json')
-            .then(response => response.json())
-            .then(data => {
-                keyedEpisodeNames = data[language];
+        if (allowedSeasonKeys.length === 0) {
+            episodeGuessInput.style.display = 'none';
+            guessButton.style.display = 'none';
+            jokerButton.style.display = 'none';
+            noSeasonLabel.style.display = 'block';
+            return;
+        } else {
+            episodeGuessInput.style.display = 'block';
+            guessButton.style.display = 'block';
+            jokerButton.style.display = 'block';
+            noSeasonLabel.style.display = 'none';
+        }
 
-                // Clear the episode names list
-                episodeNamesList.innerHTML = "";
-
-                // Fill the episode names list with the episode names from the episodes object
-                for (let episodeKey in keyedEpisodeNames) {
-                    let option = document.createElement('option');
-                    option.value = keyedEpisodeNames[episodeKey]; // Set the value of the option
-                    episodeNamesList.appendChild(option);
-                }
-            });
-    }
+        previouslyShownEpisodes = [];
+        loadEpisodeNames(languageSelect.value);
+        showRandomImage();
+    });
 
     // Store the last 20% the episodes to prevent repeats and make it feel more random
     function addToLastEpisodeList(value) {
         // Only add 50% of the episodes to the list, so you don't know which episodes won't be repeated
         if (Math.random() > 0.5) return;
 
-        if (previousEpisodeList.length >= Math.floor(episodeCount / 5)) {
-            // Remove the first element when the list is full
-            previousEpisodeList.shift();
+        // If the list is longer than 20% of the episode count, remove the first element
+        if (previouslyShownEpisodes.length > episodeCount * 0.2) {
+            previouslyShownEpisodes.shift();
         }
-        previousEpisodeList.push(value);
+        previouslyShownEpisodes.push(value);
     }
 
     function getRandomEpisodeKey() {
-        let randomEpisodeKey = episodeKeys[Math.floor(Math.random() * episodeKeys.length)];
-        if (previousEpisodeList.includes(randomEpisodeKey)) {
+        let randomEpisodeKey = allowedEpisodeKeyList[Math.floor(Math.random() * allowedEpisodeKeyList.length)];
+        if (previouslyShownEpisodes.includes(randomEpisodeKey)) {
             return getRandomEpisodeKey();
         }
+
         addToLastEpisodeList(randomEpisodeKey);
         return randomEpisodeKey;
     }
@@ -273,11 +337,11 @@
     }
 
     function showRandomImage() {
-        currentEpisode = getRandomEpisodeKey();
+        currentEpisodeKey = getRandomEpisodeKey();
 
-        const imageList = keyedImageList[currentEpisode];
-        currentImage = getRandomImageKey(imageList);
-        const encodedImage = encodeURI('randomframes/' + currentImage);
+        const imageList = imagesJsonData[currentEpisodeKey];
+        currentImageKey = getRandomImageKey(imageList);
+        const encodedImage = encodeURI('randomframes/' + currentImageKey);
 
         showNewImage(encodedImage);
     }
@@ -292,17 +356,17 @@
         if (jokerUsesLeft > 0) {
             jokerUsesLeft--;
             updateJokerButton(jokerUsesLeft);
-            imagesShownDuringJoker.push(currentImage);
+            imagesShownDuringJoker.push(currentImageKey);
 
-            const imageList = keyedImageList[currentEpisode];
+            const imageList = imagesJsonData[currentEpisodeKey];
             if (imagesShownDuringJoker.length === imageList.length) imagesShownDuringJoker = [];
 
             // Prevent the same images to be shown twice during the same joker round
-            while (imagesShownDuringJoker.includes(currentImage)) {
-                currentImage = getRandomImageKey(imageList);
+            while (imagesShownDuringJoker.includes(currentImageKey)) {
+                currentImageKey = getRandomImageKey(imageList);
             }
 
-            const encodedImage = encodeURI('randomframes/' + currentImage);
+            const encodedImage = encodeURI('randomframes/' + currentImageKey);
             showNewImage(encodedImage);
         } else {
             alert("You have no jokers left. You will get a new joker every " + scoreToGetNewJoker + " points.");
@@ -311,7 +375,9 @@
 
     function checkGuess(guess) {
         if (Object.values(keyedEpisodeNames).includes(guess)) {
-            let currentEpisodeName = keyedEpisodeNames[currentEpisode];
+            seasonSelect.prop('disabled', true);
+
+            let currentEpisodeName = keyedEpisodeNames[currentEpisodeKey];
             if (guess === currentEpisodeName) {
                 score++;
                 showRandomImage();
@@ -364,13 +430,15 @@
         episodeGuessInput.style.display = 'block';
         guessButton.style.display = 'block';
         jokerButton.style.display = 'block';
+        seasonSelect.prop('disabled', false);
         tryAgainButton.style.display = 'none';
 
-        showRandomImage();
         scoreElement.innerText = "Score: " + score;
         highScoreElement.style.color = "#000";
         jokerUsesLeft = startingJokers;
         updateJokerButton(jokerUsesLeft);
+
+        showRandomImage();
     }
 </script>
 </body>

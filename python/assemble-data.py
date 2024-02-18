@@ -3,7 +3,8 @@ import json
 import shutil
 
 
-def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path, image_folder, image_list_path):
+def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
+                        image_folder, image_list_path, season_key_path):
     """
     Assembles the image data for the website by copying the screenshots to a folder
     and saving the image origins to a JSON file.
@@ -16,7 +17,17 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path, i
         episode_titles_path: JSON file containing the episode titles with the language code as the key
         image_folder: Folder to save the images to
         image_list_path: JSON file to save the image origins to
+        season_key_path: JSON file to save the season keyed episodes to
     """
+
+    # Replace wrong apostrophes in the title files
+    for filename in os.listdir(titles_folder):
+        if filename.endswith(".txt"):
+            with open(os.path.join(titles_folder, filename), 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+            with open(os.path.join(titles_folder, filename), 'w', encoding='utf-8') as f:
+                for line in lines:
+                    f.write(line.replace("’", "'"))
 
     english_file_name = "English.txt"
     if not os.path.isfile(os.path.join(titles_folder, english_file_name)):
@@ -33,7 +44,10 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path, i
     titles = {}
     # Load the English titles, because they are needed for the combined language titles
     with open(os.path.join(titles_folder, english_file_name), 'r', encoding='utf-8') as f:
-        titles["English"] = {line.split(": ")[0]: line.strip() for line in f.readlines()}
+        titles["English"] = {}
+        for line in f.readlines():
+            episode_code = line.split(":")[0].strip()
+            titles["English"][episode_code] = line.strip()
 
     # Load all the other language titles
     for filename in os.listdir(titles_folder):
@@ -41,18 +55,19 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path, i
             continue
         language_code = filename.split(".")[0]
         with open(os.path.join(titles_folder, filename), 'r', encoding='utf-8') as f:
-            titles[language_code] = {line.split(": ")[0]: line.strip() for line in f.readlines()}
-            combined_language_code = f"{language_code}-English"
+            titles[language_code] = {}
 
-            # Create combined language titles with English in brackets
-            combined_titles = {}
-            for episode_code, title in titles[language_code].items():
-                if episode_code in titles["English"]:
-                    english_title = titles["English"][episode_code].split(": ")[1].strip()
-                    combined_titles[episode_code] = f"{title} ({english_title})"
-                else:
-                    combined_titles[episode_code] = title
-            titles[combined_language_code] = combined_titles
+            combined_language_code = f"{language_code}-English"
+            titles[combined_language_code] = {}
+            for line in f.readlines():
+                episode_code = line.split(":")[0].strip()
+                titles[language_code][episode_code] = line.strip()
+
+                if episode_code not in titles["English"]:
+                    continue
+                english_title = titles["English"][episode_code].split(": ")[1].strip()
+                combined_title = f"{line.strip()} ({english_title})"
+                titles[combined_language_code][episode_code] = combined_title
 
     # Save the episode titles to a JSON file
     with open(episode_titles_path, 'w') as f:
@@ -61,15 +76,15 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path, i
     # Check for missing titles
     missing_titles = {language_code: [] for language_code in titles.keys()}
     for episode_code in episode_codes:
-        for language_code, episode_titles in titles.items():
-            if episode_code not in episode_titles:
-                missing_titles[language_code].append(episode_code)
+        for language_key, episode_list in titles.items():
+            # Skip the combined language titles, since they are only a duplicate of the other languages
+            if language_key.endswith("-English"):
+                continue
+            if episode_code not in episode_list:
+                missing_titles[language_key].append(episode_code)
 
     bool_missing = False
     for language_code, missing in missing_titles.items():
-        # Skip the combined language titles
-        if language_code.endswith("-English"):
-            continue
         if len(missing) > 0:
             bool_missing = True
             print(f"Missing titles for {language_code}: {missing}")
@@ -110,8 +125,20 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path, i
     with open(image_list_path, 'w') as f:
         json.dump(image_list, f, indent=4)
 
-    print(f"Image origins saved to '{image_list_path}'.")
+    print(f"Image paths saved to '{image_list_path}'.")
     print(f"Screenshots saved to '{image_folder}'.")
+
+    season_keyed_episodes = {}
+    for episode_code in episode_codes:
+        season_key = episode_code[:3]
+        if season_key not in season_keyed_episodes:
+            season_keyed_episodes[season_key] = []
+        season_keyed_episodes[season_key].append(episode_code)
+
+    with open(season_key_path, 'w') as f:
+        json.dump(season_keyed_episodes, f, indent=4)
+
+    print(f"Season keyed episodes saved to '{season_key_path}'.")
 
 
 python_folder = os.getcwd()
@@ -122,6 +149,7 @@ website_folder = os.path.dirname(os.getcwd())
 website_image_folder = os.path.join(website_folder, "randomframes")
 website_image_list = os.path.join(website_folder, "image-list.json")
 website_episode_titles = os.path.join(website_folder, "episode-titles.json")
+website_season_keys = os.path.join(website_folder, "season-keys.json")
 
 assemble_image_data(python_screenshot_folder, python_titles_folder, website_episode_titles,
-                    website_image_folder, website_image_list)
+                    website_image_folder, website_image_list, website_season_keys)

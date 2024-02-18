@@ -21,7 +21,7 @@ S01E10P1: Kulturschock
 S01E10P2: F.U.N.
 S01E11P1: Aufgeblasen
 S01E11P2: Die Wachsfigur
-S01E12P1: Tanz’ den Schwamm
+S01E12P1: Tanz' den Schwamm
 S01E12P2: Mitarbeiter des Monats
 S01E13P1: Das große Gruseln
 S01E13P2: Zur Schnecke gemacht
@@ -39,3 +39,11 @@ S01E19P1: Aprilscherze
 S01E19P2: Ein göttlicher Burger
 S01E20P1: Am Haken
 S01E20P2: Rückkehr der Superhelden
+S02E01P1: Hey, dein Schuh ist offen
+S02E01P2: Der Stellvertreter
+S02E02P1: Mundgeruch
+S02E02P2: Die Kuschel-Krabbe
+S02E03P1: Dick, rosa und dumm
+S02E03P2: Bernhard Blase
+S02E04P1: Die Kuchen-Bombe
+S02E04P2: Der Doppelgänger

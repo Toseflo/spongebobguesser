@@ -40,7 +40,15 @@
         "S01E19P1": "S01E19P1: Fools in April",
         "S01E19P2": "S01E19P2: Neptune's Spatula",
         "S01E20P1": "S01E20P1: Hooky",
-        "S01E20P2": "S01E20P2: Mermaid Man and Barnacle Boy II."
+        "S01E20P2": "S01E20P2: Mermaid Man and Barnacle Boy II.",
+        "S02E01P1": "S02E01P1: Your Shoe's Untied",
+        "S02E01P2": "S02E01P2: Squid's Day Off",
+        "S02E02P1": "S02E02P1: Something Smells",
+        "S02E02P2": "S02E02P2: Bossy Boots",
+        "S02E03P1": "S02E03P1: Big Pink Loser",
+        "S02E03P2": "S02E03P2: Bubble Buddy",
+        "S02E04P1": "S02E04P1: Dying For Pie",
+        "S02E04P2": "S02E04P2: Imitation Krabs"
     },
     "German": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht",
@@ -66,7 +74,7 @@
         "S01E10P2": "S01E10P2: F.U.N.",
         "S01E11P1": "S01E11P1: Aufgeblasen",
         "S01E11P2": "S01E11P2: Die Wachsfigur",
-        "S01E12P1": "S01E12P1: Tanz\u2019 den Schwamm",
+        "S01E12P1": "S01E12P1: Tanz' den Schwamm",
         "S01E12P2": "S01E12P2: Mitarbeiter des Monats",
         "S01E13P1": "S01E13P1: Das gro\u00dfe Gruseln",
         "S01E13P2": "S01E13P2: Zur Schnecke gemacht",
@@ -83,7 +91,15 @@
         "S01E19P1": "S01E19P1: Aprilscherze",
         "S01E19P2": "S01E19P2: Ein g\u00f6ttlicher Burger",
         "S01E20P1": "S01E20P1: Am Haken",
-        "S01E20P2": "S01E20P2: R\u00fcckkehr der Superhelden"
+        "S01E20P2": "S01E20P2: R\u00fcckkehr der Superhelden",
+        "S02E01P1": "S02E01P1: Hey, dein Schuh ist offen",
+        "S02E01P2": "S02E01P2: Der Stellvertreter",
+        "S02E02P1": "S02E02P1: Mundgeruch",
+        "S02E02P2": "S02E02P2: Die Kuschel-Krabbe",
+        "S02E03P1": "S02E03P1: Dick, rosa und dumm",
+        "S02E03P2": "S02E03P2: Bernhard Blase",
+        "S02E04P1": "S02E04P1: Die Kuchen-Bombe",
+        "S02E04P2": "S02E04P2: Der Doppelg\u00e4nger"
     },
     "German-English": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht (Help Wanted)",
@@ -109,7 +125,7 @@
         "S01E10P2": "S01E10P2: F.U.N. (F.U.N.)",
         "S01E11P1": "S01E11P1: Aufgeblasen (MuscleBob BuffPants)",
         "S01E11P2": "S01E11P2: Die Wachsfigur (Squidward the Unfriendly Ghost)",
-        "S01E12P1": "S01E12P1: Tanz\u2019 den Schwamm (The Chaperone)",
+        "S01E12P1": "S01E12P1: Tanz' den Schwamm (The Chaperone)",
         "S01E12P2": "S01E12P2: Mitarbeiter des Monats (Employee of the Month)",
         "S01E13P1": "S01E13P1: Das gro\u00dfe Gruseln (Scaredy Pants)",
         "S01E13P2": "S01E13P2: Zur Schnecke gemacht (I Was a Teenage Gary)",
@@ -126,6 +142,14 @@
         "S01E19P1": "S01E19P1: Aprilscherze (Fools in April)",
         "S01E19P2": "S01E19P2: Ein g\u00f6ttlicher Burger (Neptune's Spatula)",
         "S01E20P1": "S01E20P1: Am Haken (Hooky)",
-        "S01E20P2": "S01E20P2: R\u00fcckkehr der Superhelden (Mermaid Man and Barnacle Boy II.)"
+        "S01E20P2": "S01E20P2: R\u00fcckkehr der Superhelden (Mermaid Man and Barnacle Boy II.)",
+        "S02E01P1": "S02E01P1: Hey, dein Schuh ist offen (Your Shoe's Untied)",
+        "S02E01P2": "S02E01P2: Der Stellvertreter (Squid's Day Off)",
+        "S02E02P1": "S02E02P1: Mundgeruch (Something Smells)",
+        "S02E02P2": "S02E02P2: Die Kuschel-Krabbe (Bossy Boots)",
+        "S02E03P1": "S02E03P1: Dick, rosa und dumm (Big Pink Loser)",
+        "S02E03P2": "S02E03P2: Bernhard Blase (Bubble Buddy)",
+        "S02E04P1": "S02E04P1: Die Kuchen-Bombe (Dying For Pie)",
+        "S02E04P2": "S02E04P2: Der Doppelg\u00e4nger (Imitation Krabs)"
     }
 }
