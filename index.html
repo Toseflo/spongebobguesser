@@ -3,7 +3,16 @@
 <head>
     <title>Spongebob Guesser</title>
 
+    <!-- Include Tippy.js library -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away-subtle.css"/>
+
     <style>
+        body {
+            font-family: Verdana, sans-serif;
+        }
+
         #image-container {
             display: flex;
             width: 100%;
@@ -28,7 +37,6 @@
             text-align: center;
             margin: 10px auto;
             font-size: 1.3em;
-            font-family: Verdana, sans-serif;
             caret-color: transparent;
         }
 
@@ -37,7 +45,6 @@
             margin: 30px auto;
             width: 70%;
             font-size: 1.3em;
-            font-family: Verdana, sans-serif;
         }
 
         #guess-input {
@@ -46,7 +53,6 @@
             margin: 20px auto;
             padding: 10px;
             font-size: 1.3em;
-            font-family: Verdana, sans-serif;
         }
 
         #language-select {
@@ -55,7 +61,6 @@
             margin: 10px auto;
             padding: 7px;
             font-size: 1.2em;
-            font-family: Verdana, sans-serif;
         }
 
         #guess-input,
@@ -64,12 +69,12 @@
         }
 
         #guess-button,
+        #joker-button,
         #try-again-button {
             display: block;
             margin: 0 auto;
             padding: 20px 30px;
             font-size: 1.5em;
-            font-weight: bold;
             border-radius: 8px;
             caret-color: transparent;
         }
@@ -80,6 +85,7 @@
             align-items: center;
             caret-color: transparent;
         }
+
         .select-group label {
             font-family: Verdana, sans-serif;
             font-size: 1em;
@@ -91,7 +97,6 @@
 
         .column {
             flex: 1;
-            padding: 0 50px;
         }
 
         @media (max-aspect-ratio: 3/2) {
@@ -113,20 +118,28 @@
 <input id="guess-input" list="episode-names" placeholder="Guess the episode...">
 <div id="feedback"></div>
 <div class="container">
+    <div class="column"></div>
     <div class="column">
         <div class="select-group">
-            <label for="language-select">Language of episode list:</label>
+            <label for="language-select">Language of episode titles:</label>
             <select id="language-select"></select>
         </div>
     </div>
+    <div class="column"></div>
     <div class="column">
-        <button id="guess-button" onclick="checkGuess(document.getElementById('guess-input').value)">Guess</button>
-        <button id="try-again-button" onclick="resetGame()">Try Again</button>
+        <button id="joker-button" onclick="handleJokerClick() ">Joker</button>
     </div>
+    <div class="column">
+        <button id="guess-button" onclick="checkGuess(document.getElementById('guess-input').value)"><b>Guess</b>
+        </button>
+        <button id="try-again-button" onclick="resetGame()"><b>Try Again</b></button>
+    </div>
+    <div class="column"></div>
     <div class="column">
         <div id="score">Score: 0</div>
         <div id="high-score">High Score: 0</div>
     </div>
+    <div class="column"></div>
 </div>
 
 <datalist id="episode-names">
@@ -136,12 +149,14 @@
 <script>
     let score = 0;
     let currentEpisode = "";
+    let currentImage = "";
     const languageSelect = document.getElementById('language-select');
     const episodeNamesList = document.getElementById('episode-names');
     const episodeGuessInput = document.getElementById('guess-input');
     const imageContainer = document.getElementById('image-container');
     const guessButton = document.getElementById('guess-button');
     const tryAgainButton = document.getElementById('try-again-button');
+    const jokerButton = document.getElementById('joker-button');
     const feedback = document.getElementById('feedback');
     const scoreElement = document.getElementById('score');
     const highScoreElement = document.getElementById('high-score');
@@ -150,6 +165,24 @@
     let keyedEpisodeNames = {};
     let keyedImageList = {};
     let episodeCount = 0;
+    let imagesShownDuringJoker = [];
+    const scoreToGetNewJoker = 30;
+    const startingJokers = 3;
+    let jokerUsesLeft = startingJokers;
+
+    function updateJokerButton(usesLeft) {
+        jokerButton.innerHTML = `
+            <span style="vertical-align: middle;"><b>Joker</b></span>
+            <span style="font-size: 0.7em; vertical-align: middle;"> (${usesLeft} left)</span>
+        `;
+    }
+
+    tippy('#joker-button', {
+        content: 'Show another image from the same episode',
+        animation: 'shift-away-subtle',
+    });
+
+    updateJokerButton(jokerUsesLeft);
 
     // Hide the "Try Again" button by default
     tryAgainButton.style.display = 'none';
@@ -210,8 +243,11 @@
 
     // Store the last 20% the episodes to prevent repeats and make it feel more random
     function addToLastEpisodeList(value) {
+        // Only add 50% of the episodes to the list, so you don't know which episodes won't be repeated
+        if (Math.random() > 0.5) return;
+
         if (previousEpisodeList.length >= Math.floor(episodeCount / 5)) {
-            // Shift removes and returns the first element
+            // Remove the first element when the list is full
             previousEpisodeList.shift();
         }
         previousEpisodeList.push(value);
@@ -226,13 +262,11 @@
         return randomEpisodeKey;
     }
 
-    function showRandomImage() {
-        currentEpisode = getRandomEpisodeKey();
+    function getRandomImageKey(imageList) {
+        return imageList[Math.floor(Math.random() * imageList.length)];
+    }
 
-        const imageList = keyedImageList[currentEpisode];
-        const randomImage = imageList[Math.floor(Math.random() * imageList.length)];
-        const encodedImage = encodeURI('randomframes/' + randomImage);
-
+    function showNewImage(encodedImage) {
         imageContainer.style.backgroundImage = 'url("' + encodedImage + '")';
         episodeGuessInput.value = "";
         episodeGuessInput.style.display = 'block';
@@ -241,11 +275,42 @@
         feedback.innerText = '';
     }
 
+    function showRandomImage() {
+        currentEpisode = getRandomEpisodeKey();
+
+        const imageList = keyedImageList[currentEpisode];
+        currentImage = getRandomImageKey(imageList);
+        const encodedImage = encodeURI('randomframes/' + currentImage);
+
+        showNewImage(encodedImage);
+    }
+
     episodeGuessInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             checkGuess(episodeGuessInput.value);
         }
     });
+
+    function handleJokerClick() {
+        if (jokerUsesLeft > 0) {
+            jokerUsesLeft--;
+            updateJokerButton(jokerUsesLeft);
+            imagesShownDuringJoker.push(currentImage);
+
+            const imageList = keyedImageList[currentEpisode];
+            if (imagesShownDuringJoker.length === imageList.length) imagesShownDuringJoker = [];
+
+            // Prevent the same images to be shown twice during the same joker round
+            while (imagesShownDuringJoker.includes(currentImage)) {
+                currentImage = getRandomImageKey(imageList);
+            }
+
+            const encodedImage = encodeURI('randomframes/' + currentImage);
+            showNewImage(encodedImage);
+        } else {
+            alert("You have no jokers left. You will get a new joker every " + scoreToGetNewJoker + " points.");
+        }
+    }
 
     function checkGuess(guess) {
         if (Object.values(keyedEpisodeNames).includes(guess)) {
@@ -253,6 +318,13 @@
             if (guess === currentEpisodeName) {
                 score++;
                 showRandomImage();
+
+                imagesShownDuringJoker = [];
+                // If the score is a multiple of the scoreToGetNewJoker, give the player a new joker
+                if (score % scoreToGetNewJoker === 0) {
+                    jokerUsesLeft += startingJokers;
+                    updateJokerButton(jokerUsesLeft);
+                }
             } else {
                 episodeGuessInput.style.display = 'none';
                 guessButton.style.display = 'none';
@@ -293,6 +365,8 @@
         showRandomImage();
         scoreElement.innerText = "Score: " + score;
         highScoreElement.style.color = "#000";
+        jokerUsesLeft = startingJokers;
+        updateJokerButton(jokerUsesLeft);
     }
 </script>
 </body>
