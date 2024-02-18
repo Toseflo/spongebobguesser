@@ -6,7 +6,7 @@ Thanks to V3ctoor for making the code of his Avatar Guesser game public.
 
 ## How to add new screenshots:
 
-1. I used the webiste https://fancaps.net/tv/showimages.php?4061-SpongeBob_SquarePants_Season_1 to get the screenshots for the game
+1. I used the webiste https://fancaps.net/search.php?q=spongebob&MoviesCB=Movies&TVCB=TV to get the screenshots for the game
 2. Save the screenshots in the python/screenshots folder with subfolders named S*xx*E*yy*P*z* for the season, episode and part in the episode
 3. Add the title of the episode to every language file in python/titles
 4. Run the python script with the correct paths. It should update randomframes, episode-titles.json and image-list.json
