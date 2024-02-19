@@ -179,6 +179,12 @@
 </datalist>
 
 <script>
+    $(document).ready(function () {
+        $("#season-select").select2({
+            multiple: true
+        });
+    });
+
     const languageSelect = document.getElementById('language-select');
     const episodeNamesList = document.getElementById('episode-names');
     const noSeasonLabel = document.getElementById('no-season-label');
@@ -212,12 +218,8 @@
     let livesLeft = startingLives;
     let currentEpisodeKey = "";
     let currentImageKey = "";
-
-    $(document).ready(function () {
-        $("#season-select").select2({
-            multiple: true
-        });
-    });
+    let state = "game";
+    let isEnterPressed = false;
 
     function updateJokerButton(usesLeft) {
         jokerButton.innerHTML = `
@@ -296,9 +298,32 @@
         }
     }
 
-    // Add an event listener for when the language select changes
+    // When the language select changes, load the episode names for the selected language
     languageSelect.addEventListener('change', (event) => {
         loadEpisodeNames(event.target.value);
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && !isEnterPressed) {
+            isEnterPressed = true;
+
+            if (state === "continue") {
+                continueGame();
+            } else if (state === "game-over") {
+                resetGame();
+            } else if (state === "game") {
+                if (episodeGuessInput.value == "") {
+                    episodeGuessInput.focus();
+                } else {
+                    checkGuess(episodeGuessInput.value);
+                }
+            }
+
+            // Reset the flag after a short delay to allow for multiple presses
+            setTimeout(() => {
+                isEnterPressed = false;
+            }, 200); // Adjust the delay as needed
+        }
     });
 
     seasonSelect.on('change', function () {
@@ -333,7 +358,6 @@
             previouslyShownEpisodes.shift();
         }
         previouslyShownEpisodes.push(value);
-        console.log(previouslyShownEpisodes)
     }
 
     function getRandomEpisodeKey() {
@@ -364,13 +388,8 @@
         const encodedImage = encodeURI('randomframes/' + currentImageKey);
 
         showNewImage(encodedImage);
+        episodeGuessInput.focus();
     }
-
-    episodeGuessInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            checkGuess(episodeGuessInput.value);
-        }
-    });
 
     function handleJokerClick() {
         if (jokerUsesLeft > 0) {
@@ -423,9 +442,11 @@
                         feedbackText.innerHTML = episodeString + "<br><b>You have " + livesLeft + " lives left</b>.";
                     }
                     continueButton.style.display = 'block';
+                    state = "continue";
                 } else {
                     tryAgainButton.style.display = 'block';
                     feedbackText.innerHTML = episodeString + "<br><b>Game over</b>.";
+                    state = "game-over";
                 }
             }
             scoreElement.innerText = "Score: " + score;
@@ -458,6 +479,7 @@
     }
 
     function showGameButtons() {
+        state = "game";
         episodeGuessInput.style.display = 'block';
         guessButton.style.display = 'block';
         jokerButton.style.display = 'block';
