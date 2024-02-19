@@ -48,7 +48,13 @@
         "S02E03P1": "S02E03P1: Big Pink Loser",
         "S02E03P2": "S02E03P2: Bubble Buddy",
         "S02E04P1": "S02E04P1: Dying For Pie",
-        "S02E04P2": "S02E04P2: Imitation Krabs"
+        "S02E04P2": "S02E04P2: Imitation Krabs",
+        "S02E05P1": "S02E05P1: Wormy",
+        "S02E05P2": "S02E05P2: Patty Hype",
+        "S02E06P1": "S02E06P1: Grandma's Kisses",
+        "S02E06P2": "S02E06P2: Squidville",
+        "S02E07P1": "S02E07P1: Pre-Hibernation Week",
+        "S02E07P2": "S02E07P2: Life of Crime"
     },
     "German": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht",
@@ -99,7 +105,13 @@
         "S02E03P1": "S02E03P1: Dick, rosa und dumm",
         "S02E03P2": "S02E03P2: Bernhard Blase",
         "S02E04P1": "S02E04P1: Die Kuchen-Bombe",
-        "S02E04P2": "S02E04P2: Der Doppelg\u00e4nger"
+        "S02E04P2": "S02E04P2: Der Doppelg\u00e4nger",
+        "S02E05P1": "S02E05P1: Wurmi",
+        "S02E05P2": "S02E05P2: Eine gute Idee",
+        "S02E06P1": "S02E06P1: Omas Liebling",
+        "S02E06P2": "S02E06P2: Das Tentakel-Paradies",
+        "S02E07P1": "S02E07P1: Bis zur Ersch\u00f6pfung",
+        "S02E07P2": "S02E07P2: Ganoven"
     },
     "German-English": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht (Help Wanted)",
@@ -150,6 +162,12 @@
         "S02E03P1": "S02E03P1: Dick, rosa und dumm (Big Pink Loser)",
         "S02E03P2": "S02E03P2: Bernhard Blase (Bubble Buddy)",
         "S02E04P1": "S02E04P1: Die Kuchen-Bombe (Dying For Pie)",
-        "S02E04P2": "S02E04P2: Der Doppelg\u00e4nger (Imitation Krabs)"
+        "S02E04P2": "S02E04P2: Der Doppelg\u00e4nger (Imitation Krabs)",
+        "S02E05P1": "S02E05P1: Wurmi (Wormy)",
+        "S02E05P2": "S02E05P2: Eine gute Idee (Patty Hype)",
+        "S02E06P1": "S02E06P1: Omas Liebling (Grandma's Kisses)",
+        "S02E06P2": "S02E06P2: Das Tentakel-Paradies (Squidville)",
+        "S02E07P1": "S02E07P1: Bis zur Ersch\u00f6pfung (Pre-Hibernation Week)",
+        "S02E07P2": "S02E07P2: Ganoven (Life of Crime)"
     }
 }

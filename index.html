@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away-subtle.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <style>
@@ -37,6 +37,20 @@
             object-fit: contain; /* This will prevent the image from being stretched */
         }
 
+        @media (max-aspect-ratio: 3/2) {
+            #image-container {
+                width: 100%;
+                height: auto;
+                padding-top: 75%; /* Adjust this value as needed based on the aspect ratio of the image without black bars */
+                margin-left: auto;
+                margin-right: auto;
+                overflow-x: hidden; /* This will prevent horizontal scrolling */
+                background-size: cover; /* This will make the image as large as possible while still being contained within the background positioning area */
+                background-position: center; /* This will center the image within the positioning area */
+            }
+        }
+
+        #lives-left,
         #score,
         #high-score {
             text-align: center;
@@ -47,8 +61,7 @@
 
         #feedback {
             text-align: center;
-            margin: 30px auto;
-            width: 70%;
+            margin: 20px auto;
             font-size: 1.3em;
         }
 
@@ -79,13 +92,20 @@
 
         #guess-button,
         #joker-button,
-        #try-again-button {
+        #try-again-button,
+        #continue-button {
             display: block;
             margin: 0 auto;
             padding: 20px 30px;
             font-size: 1.5em;
             border-radius: 8px;
             caret-color: transparent;
+        }
+
+        #try-again-button,
+        #no-season-label,
+        #continue-button {
+            display: none;
         }
 
         .select-group {
@@ -104,8 +124,8 @@
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            margin: -40px auto 20px;
-            width: 90%;
+            margin: -30px auto;
+            width: 80%;
         }
 
         .column {
@@ -113,23 +133,16 @@
             text-align: center;
         }
 
-        @media (max-aspect-ratio: 3/2) {
-            #image-container {
-                width: 100%;
-                height: auto;
-                padding-top: 75%; /* Adjust this value as needed based on the aspect ratio of the image without black bars */
-                margin-left: auto;
-                margin-right: auto;
-                overflow-x: hidden; /* This will prevent horizontal scrolling */
-                background-size: cover; /* This will make the image as large as possible while still being contained within the background positioning area */
-                background-position: center; /* This will center the image within the positioning area */
-            }
+        .center-horizontal {
+            display: flex;
+            justify-content: center;
+            margin: -100px auto;
         }
     </style>
 </head>
 <body>
 <div id="image-container"></div>
-<label id="no-season-label">You have to select at least one season</label>
+<div id="no-season-label">You have to select at least one season</div>
 <input id="guess-input" list="episode-names" placeholder="Guess the episode...">
 <div id="feedback"></div>
 <div class="container">
@@ -143,20 +156,22 @@
             <select id="season-select" multiple></select>
         </div>
     </div>
-    <div class="column"></div>
     <div class="column">
         <button id="joker-button" onclick="handleJokerClick() ">Joker</button>
     </div>
     <div class="column">
         <button id="guess-button" onclick="checkGuess(document.getElementById('guess-input').value)"><b>Guess</b>
         </button>
-        <button id="try-again-button" onclick="resetGame()"><b>Try Again</b></button>
     </div>
-    <div class="column"></div>
     <div class="column">
+        <div id="lives-left">Lives: 3</div>
         <div id="score">Score: 0</div>
         <div id="high-score">High Score: 0</div>
     </div>
+</div>
+<div class="center-horizontal">
+    <button id="continue-button" onclick="continueGame()">Continue</button>
+    <button id="try-again-button" onclick="resetGame()"><b>Try Again</b></button>
 </div>
 
 <datalist id="episode-names">
@@ -171,8 +186,10 @@
     const imageContainer = document.getElementById('image-container');
     const guessButton = document.getElementById('guess-button');
     const tryAgainButton = document.getElementById('try-again-button');
+    const continueButton = document.getElementById('continue-button');
     const jokerButton = document.getElementById('joker-button');
-    const feedback = document.getElementById('feedback');
+    const feedbackText = document.getElementById('feedback');
+    const livesLeftText = document.getElementById('lives-left');
     const scoreElement = document.getElementById('score');
     const highScoreElement = document.getElementById('high-score');
     const seasonSelect = $('#season-select');
@@ -185,15 +202,18 @@
     let episodeCount = 0;
     let previouslyShownEpisodes = [];
     let imagesShownDuringJoker = [];
-    const scoreToGetNewJoker = 30;
-    const startingJokers = 3;
+    const startingJokers = 5;
     let jokerUsesLeft = startingJokers;
+    const scoreToGetNewJoker = 30;
+    const jokersToGet = 3;
     let fetchDone = false;
     let score = 0;
+    const startingLives = 3;
+    let livesLeft = startingLives;
     let currentEpisodeKey = "";
     let currentImageKey = "";
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#season-select").select2({
             multiple: true
         });
@@ -211,8 +231,7 @@
         animation: 'shift-away-subtle',
     });
 
-    noSeasonLabel.style.display = 'none';
-    tryAgainButton.style.display = 'none';
+    livesLeftText.innerText = "Lives: " + livesLeft;
     updateJokerButton(jokerUsesLeft);
     checkHighScore();
 
@@ -282,7 +301,7 @@
         loadEpisodeNames(event.target.value);
     });
 
-    seasonSelect.on('change', function() {
+    seasonSelect.on('change', function () {
         allowedSeasonKeys = $(this).val();
         if (!fetchDone) return;
 
@@ -314,6 +333,7 @@
             previouslyShownEpisodes.shift();
         }
         previouslyShownEpisodes.push(value);
+        console.log(previouslyShownEpisodes)
     }
 
     function getRandomEpisodeKey() {
@@ -333,7 +353,7 @@
     function showNewImage(encodedImage) {
         imageContainer.style.backgroundImage = 'url("' + encodedImage + '")';
         episodeGuessInput.value = "";
-        feedback.innerText = '';
+        feedbackText.innerText = '';
     }
 
     function showRandomImage() {
@@ -369,7 +389,8 @@
             const encodedImage = encodeURI('randomframes/' + currentImageKey);
             showNewImage(encodedImage);
         } else {
-            alert("You have no jokers left. You will get a new joker every " + scoreToGetNewJoker + " points.");
+            alert("You have no jokers left. You will get " + jokersToGet + " new jokers every " +
+                scoreToGetNewJoker + " points.");
         }
     }
 
@@ -385,15 +406,27 @@
                 imagesShownDuringJoker = [];
                 // If the score is a multiple of the scoreToGetNewJoker, give the player a new joker
                 if (score % scoreToGetNewJoker === 0) {
-                    jokerUsesLeft += startingJokers;
+                    jokerUsesLeft += jokersToGet;
                     updateJokerButton(jokerUsesLeft);
                 }
             } else {
                 episodeGuessInput.style.display = 'none';
                 guessButton.style.display = 'none';
                 jokerButton.style.display = 'none';
-                tryAgainButton.style.display = 'block';
-                feedback.innerText = "You guessed " + guess + ", but the correct answer is " + currentEpisodeName + ".";
+                livesLeft--;
+                livesLeftText.innerText = "Lives: " + livesLeft;
+                let episodeString = "You guessed " + guess + ", but the correct answer is " + currentEpisodeName + ".";
+                if (livesLeft > 0) {
+                    if (livesLeft === 1) {
+                        feedbackText.innerHTML = episodeString + "<br><b>You have " + livesLeft + " life left</b>.";
+                    } else {
+                        feedbackText.innerHTML = episodeString + "<br><b>You have " + livesLeft + " lives left</b>.";
+                    }
+                    continueButton.style.display = 'block';
+                } else {
+                    tryAgainButton.style.display = 'block';
+                    feedbackText.innerHTML = episodeString + "<br><b>Game over</b>.";
+                }
             }
             scoreElement.innerText = "Score: " + score;
         } else {
@@ -424,14 +457,21 @@
         }
     }
 
-    function resetGame() {
-        score = 0;
-
+    function showGameButtons() {
         episodeGuessInput.style.display = 'block';
         guessButton.style.display = 'block';
         jokerButton.style.display = 'block';
-        seasonSelect.prop('disabled', false);
         tryAgainButton.style.display = 'none';
+        continueButton.style.display = 'none';
+    }
+
+    function resetGame() {
+        score = 0;
+        livesLeft = startingLives;
+        livesLeftText.innerText = "Lives: " + livesLeft;
+
+        showGameButtons()
+        seasonSelect.prop('disabled', false);
 
         scoreElement.innerText = "Score: " + score;
         highScoreElement.style.color = "#000";
@@ -440,6 +480,13 @@
 
         showRandomImage();
     }
+
+    function continueGame() {
+        showGameButtons()
+
+        showRandomImage();
+    }
+
 </script>
 </body>
 </html>

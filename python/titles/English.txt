@@ -47,3 +47,9 @@ S02E03P1: Big Pink Loser
 S02E03P2: Bubble Buddy
 S02E04P1: Dying For Pie
 S02E04P2: Imitation Krabs
+S02E05P1: Wormy
+S02E05P2: Patty Hype
+S02E06P1: Grandma's Kisses
+S02E06P2: Squidville
+S02E07P1: Pre-Hibernation Week
+S02E07P2: Life of Crime
