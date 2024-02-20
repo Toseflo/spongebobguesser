@@ -131,7 +131,7 @@ episodeSelect.on('select2:select', function (event) {
     // Wait 100ms to set the inputEntered flag, so that it doesn't directly check the guess
     setTimeout(() => {
         inputEntered = true;
-    } , 100);
+    } , 10);
 });
 
 seasonSelect.on('change', function () {
