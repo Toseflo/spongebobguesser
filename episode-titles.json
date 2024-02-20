@@ -57,7 +57,13 @@
         "S02E07P2": "S02E07P2: Life of Crime",
         "S02E08P1": "S02E08P1: Christmas Who?",
         "S02E09P1": "S02E09P1: Survival of the Idiots",
-        "S02E09P2": "S02E09P2: Dumped"
+        "S02E09P2": "S02E09P2: Dumped",
+        "S02E10P1": "S02E10P1: No Free Rides",
+        "S02E10P2": "S02E10P2: I'm Your Biggest Fanatic",
+        "S02E11P1": "S02E11P1: Mermaid Man and Barnacle Boy III",
+        "S02E11P2": "S02E11P2: Squirrel Jokes",
+        "S02E12P1": "S02E12P1: Pressure",
+        "S02E12P2": "S02E12P2: The Smoking Peanut"
     },
     "German": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht",
@@ -117,7 +123,13 @@
         "S02E07P2": "S02E07P2: Ganoven",
         "S02E08P1": "S02E08P1: Weihnachten unter Wasser",
         "S02E09P1": "S02E09P1: Ein harter Winter",
-        "S02E09P2": "S02E09P2: Allein gelassen"
+        "S02E09P2": "S02E09P2: Allein gelassen",
+        "S02E10P1": "S02E10P1: Der Schrecken der Stra\u00dfe",
+        "S02E10P2": "S02E10P2: Der Fan",
+        "S02E11P1": "S02E11P1: Heldenhafte Urlaubsvertreter",
+        "S02E11P2": "S02E11P2: Eichh\u00f6rnchen-Witze",
+        "S02E12P1": "S02E12P1: Zu Wasser und zu Land",
+        "S02E12P2": "S02E12P2: Rauchende Erdn\u00fcsse"
     },
     "German-English": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht (Help Wanted)",
@@ -177,6 +189,12 @@
         "S02E07P2": "S02E07P2: Ganoven (Life of Crime)",
         "S02E08P1": "S02E08P1: Weihnachten unter Wasser (Christmas Who?)",
         "S02E09P1": "S02E09P1: Ein harter Winter (Survival of the Idiots)",
-        "S02E09P2": "S02E09P2: Allein gelassen (Dumped)"
+        "S02E09P2": "S02E09P2: Allein gelassen (Dumped)",
+        "S02E10P1": "S02E10P1: Der Schrecken der Stra\u00dfe (No Free Rides)",
+        "S02E10P2": "S02E10P2: Der Fan (I'm Your Biggest Fanatic)",
+        "S02E11P1": "S02E11P1: Heldenhafte Urlaubsvertreter (Mermaid Man and Barnacle Boy III)",
+        "S02E11P2": "S02E11P2: Eichh\u00f6rnchen-Witze (Squirrel Jokes)",
+        "S02E12P1": "S02E12P1: Zu Wasser und zu Land (Pressure)",
+        "S02E12P2": "S02E12P2: Rauchende Erdn\u00fcsse (The Smoking Peanut)"
     }
 }

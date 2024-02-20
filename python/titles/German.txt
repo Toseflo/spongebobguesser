@@ -56,3 +56,9 @@ S02E07P2: Ganoven
 S02E08P1: Weihnachten unter Wasser
 S02E09P1: Ein harter Winter
 S02E09P2: Allein gelassen
+S02E10P1: Der Schrecken der Straße
+S02E10P2: Der Fan
+S02E11P1: Heldenhafte Urlaubsvertreter
+S02E11P2: Eichhörnchen-Witze
+S02E12P1: Zu Wasser und zu Land
+S02E12P2: Rauchende Erdnüsse

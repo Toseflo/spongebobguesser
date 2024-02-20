@@ -128,7 +128,7 @@ languageSelect.addEventListener('change', (event) => {
 });
 
 episodeSelect.on('select2:select', function (event) {
-    // This is a workaround to prevent the select2:select event from firing when enter is pressed to select an option
+    // This is a workaround to prevent the keydown event from firing when enter is pressed to select an option
     inputEntered = false;
     setTimeout(() => {
         inputEntered = true;
