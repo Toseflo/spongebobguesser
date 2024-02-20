@@ -221,6 +221,7 @@ function showRandomImage() {
     const encodedImage = encodeURI('randomframes/' + currentImageKey);
 
     showNewImage(encodedImage);
+    episodeSelect.select2('close');
     episodeSelect.select2('focus');
 }
 
