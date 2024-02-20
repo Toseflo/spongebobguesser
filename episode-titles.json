@@ -54,7 +54,8 @@
         "S02E06P1": "S02E06P1: Grandma's Kisses",
         "S02E06P2": "S02E06P2: Squidville",
         "S02E07P1": "S02E07P1: Pre-Hibernation Week",
-        "S02E07P2": "S02E07P2: Life of Crime"
+        "S02E07P2": "S02E07P2: Life of Crime",
+        "S02E08P1": "S02E08P1: Survival of the Idiots"
     },
     "German": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht",
@@ -111,7 +112,8 @@
         "S02E06P1": "S02E06P1: Omas Liebling",
         "S02E06P2": "S02E06P2: Das Tentakel-Paradies",
         "S02E07P1": "S02E07P1: Bis zur Ersch\u00f6pfung",
-        "S02E07P2": "S02E07P2: Ganoven"
+        "S02E07P2": "S02E07P2: Ganoven",
+        "S02E08P1": "S02E08P1: Ein harter Winter"
     },
     "German-English": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht (Help Wanted)",
@@ -168,6 +170,7 @@
         "S02E06P1": "S02E06P1: Omas Liebling (Grandma's Kisses)",
         "S02E06P2": "S02E06P2: Das Tentakel-Paradies (Squidville)",
         "S02E07P1": "S02E07P1: Bis zur Ersch\u00f6pfung (Pre-Hibernation Week)",
-        "S02E07P2": "S02E07P2: Ganoven (Life of Crime)"
+        "S02E07P2": "S02E07P2: Ganoven (Life of Crime)",
+        "S02E08P1": "S02E08P1: Ein harter Winter (Survival of the Idiots)"
     }
 }

@@ -1,6 +1,8 @@
 import os
 import json
 import shutil
+import cv2
+import numpy as np
 
 
 def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
@@ -95,6 +97,19 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
 
     print(f"Episode titles saved to '{episode_titles_path}'.")
 
+    # Create the season key JSON file
+    season_keyed_episodes = {}
+    for episode_code in episode_codes:
+        season_key = episode_code[:3]
+        if season_key not in season_keyed_episodes:
+            season_keyed_episodes[season_key] = []
+        season_keyed_episodes[season_key].append(episode_code)
+
+    with open(season_key_path, 'w') as f:
+        json.dump(season_keyed_episodes, f, indent=4)
+
+    print(f"Season keyed episodes saved to '{season_key_path}'.")
+
     # Create the image list JSON file and copy the images to the destination folder
     image_list = {}
 
@@ -104,6 +119,7 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
     os.makedirs(image_folder)
     for episode_code in episode_codes:
         image_list[episode_code] = []
+        print(f"Processing images for '{episode_code}'...")
         for filename in os.listdir(os.path.join(screenshot_folder, episode_code)):
             # Convert webp to jpg
             if filename.lower().endswith('.webp'):
@@ -116,10 +132,12 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
             if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
                 image_list[episode_code].append(filename)
 
-                # Copy the image to the destination folder
-                source_path = os.path.join(screenshot_folder, episode_code, filename)
+                # Load the image, remove black borders and save it to the destination folder
+                image_source_path = os.path.join(screenshot_folder, episode_code, filename)
+                image = cv2.imread(image_source_path)
+                new_image = remove_black_borders(image)
                 destination_path = os.path.join(image_folder, filename)
-                shutil.copyfile(source_path, destination_path)  # Copy the image to the destination folder
+                cv2.imwrite(destination_path, new_image)
 
     # Save the image list to a JSON file
     with open(image_list_path, 'w') as f:
@@ -128,17 +146,26 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
     print(f"Image paths saved to '{image_list_path}'.")
     print(f"Screenshots saved to '{image_folder}'.")
 
-    season_keyed_episodes = {}
-    for episode_code in episode_codes:
-        season_key = episode_code[:3]
-        if season_key not in season_keyed_episodes:
-            season_keyed_episodes[season_key] = []
-        season_keyed_episodes[season_key].append(episode_code)
 
-    with open(season_key_path, 'w') as f:
-        json.dump(season_keyed_episodes, f, indent=4)
+def remove_black_borders(image, threshold=1):
+    """
+    Removes black borders from an image using thresholding.
 
-    print(f"Season keyed episodes saved to '{season_key_path}'.")
+    Args:
+        image: The input image as a numpy array.
+        threshold: The minimum number of consecutive black pixels to consider a border.
+
+    Returns:
+        The image with black borders removed.
+    """
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    _, mask = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    vertical = np.mean(mask, axis=0)
+
+    left = np.argmax(vertical >= threshold)
+    right = len(vertical) - np.argmax(vertical[::-1] >= threshold)
+    return image[:, left:right]
 
 
 python_folder = os.getcwd()
