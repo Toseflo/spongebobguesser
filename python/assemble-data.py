@@ -31,7 +31,8 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
                 for line in lines:
                     f.write(line.replace("’", "'"))
 
-    english_file_name = "English.txt"
+    english_key = "English"
+    english_file_name = f"{english_key}.txt"
     if not os.path.isfile(os.path.join(titles_folder, english_file_name)):
         print(f"English titles file not found: '{english_file_name}'.")
         print("Change the file name to match the English language code and run the script again.")
@@ -46,10 +47,10 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
     titles = {}
     # Load the English titles, because they are needed for the combined language titles
     with open(os.path.join(titles_folder, english_file_name), 'r', encoding='utf-8') as f:
-        titles["English"] = {}
+        titles[english_key] = {}
         for line in f.readlines():
             episode_code = line.split(":")[0].strip()
-            titles["English"][episode_code] = line.strip()
+            titles[english_key][episode_code] = line.strip()
 
     # Load all the other language titles
     for filename in os.listdir(titles_folder):
@@ -59,15 +60,15 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
         with open(os.path.join(titles_folder, filename), 'r', encoding='utf-8') as f:
             titles[language_code] = {}
 
-            combined_language_code = f"{language_code}-English"
+            combined_language_code = f"{language_code}-{english_key}"
             titles[combined_language_code] = {}
             for line in f.readlines():
                 episode_code = line.split(":")[0].strip()
                 titles[language_code][episode_code] = line.strip()
 
-                if episode_code not in titles["English"]:
+                if episode_code not in titles[english_key]:
                     continue
-                english_title = titles["English"][episode_code].split(": ")[1].strip()
+                english_title = titles[english_key][episode_code].split(": ")[1].strip()
                 combined_title = f"{line.strip()} ({english_title})"
                 titles[combined_language_code][episode_code] = combined_title
 
@@ -80,10 +81,21 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
     for episode_code in episode_codes:
         for language_key, episode_list in titles.items():
             # Skip the combined language titles, since they are only a duplicate of the other languages
-            if language_key.endswith("-English"):
+            if language_key.endswith(f"-{english_key}"):
                 continue
             if episode_code not in episode_list:
                 missing_titles[language_key].append(episode_code)
+
+    # Check if a screenshot folder is missing
+    missing_folders = []
+    for episode_code in titles[english_key]:
+        if episode_code not in episode_codes:
+            missing_folders.append(episode_code)
+
+    if len(missing_folders) > 0:
+        print(f"Missing screenshot folders: {missing_folders}")
+        print("Add the missing folders to the screenshot folder and run the script again.")
+        return
 
     bool_missing = False
     for language_code, missing in missing_titles.items():
@@ -113,24 +125,49 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
     # Create the image list JSON file and copy the images to the destination folder
     image_list = {}
 
-    # Clear the image folder and create a new one
+    # create a list of all the images which are in the screenshot folders
+    screenshot_list = []
+    for subfolder in os.listdir(screenshot_folder):
+        # check if the subfolder is a directory
+        if os.path.isdir(os.path.join(screenshot_folder, subfolder)):
+            for filename in os.listdir(os.path.join(screenshot_folder, subfolder)):
+                # Convert webp to jpg
+                if filename.lower().endswith('.webp'):
+                    webp_path = os.path.join(screenshot_folder, subfolder, filename)
+                    jpg_path = webp_path.replace('.webp', '.jpg')
+                    os.system(f"magick convert {webp_path} {jpg_path}")
+                    os.remove(webp_path)
+                    filename = filename.replace('.webp', '.jpg')
+                if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
+                    screenshot_list.append(filename)
+
+    already_converted_images = []
+    removed_images = []
     if os.path.exists(image_folder):
-        shutil.rmtree(image_folder)
-    os.makedirs(image_folder)
+        for filename in os.listdir(image_folder):
+            if filename not in screenshot_list:
+                removed_images.append(filename)
+                os.remove(os.path.join(image_folder, filename))
+            else:
+                already_converted_images.append(filename)
+    else:
+        os.makedirs(image_folder)
+
+    print(f"Removed {len(removed_images)} images from '{image_folder}': {removed_images}")
+
     for episode_code in episode_codes:
         image_list[episode_code] = []
-        print(f"Processing images for '{episode_code}'...")
+        printed_conversion = False
         for filename in os.listdir(os.path.join(screenshot_folder, episode_code)):
-            # Convert webp to jpg
-            if filename.lower().endswith('.webp'):
-                webp_path = os.path.join(screenshot_folder, episode_code, filename)
-                jpg_path = os.path.join(screenshot_folder, episode_code, filename.replace('.webp', '.jpg'))
-                os.system(f"magick convert {webp_path} {jpg_path}")
-                os.remove(webp_path)
-                filename = filename.replace('.webp', '.jpg')
-
             if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
                 image_list[episode_code].append(filename)
+                # Skip images that have already been converted
+                if filename in already_converted_images:
+                    continue
+
+                if not printed_conversion:
+                    print(f"Converting images for '{episode_code}'...")
+                    printed_conversion = True
 
                 # Load the image, remove black borders and save it to the destination folder
                 image_source_path = os.path.join(screenshot_folder, episode_code, filename)

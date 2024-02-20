@@ -53,4 +53,6 @@ S02E06P1: Grandma's Kisses
 S02E06P2: Squidville
 S02E07P1: Pre-Hibernation Week
 S02E07P2: Life of Crime
-S02E08P1: Survival of the Idiots
+S02E08P1: Christmas Who?
+S02E09P1: Survival of the Idiots
+S02E09P2: Dumped

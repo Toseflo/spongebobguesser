@@ -53,4 +53,6 @@ S02E06P1: Omas Liebling
 S02E06P2: Das Tentakel-Paradies
 S02E07P1: Bis zur Erschöpfung
 S02E07P2: Ganoven
-S02E08P1: Ein harter Winter
+S02E08P1: Weihnachten unter Wasser
+S02E09P1: Ein harter Winter
+S02E09P2: Allein gelassen

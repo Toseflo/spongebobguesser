@@ -55,7 +55,9 @@
         "S02E06P2": "S02E06P2: Squidville",
         "S02E07P1": "S02E07P1: Pre-Hibernation Week",
         "S02E07P2": "S02E07P2: Life of Crime",
-        "S02E08P1": "S02E08P1: Survival of the Idiots"
+        "S02E08P1": "S02E08P1: Christmas Who?",
+        "S02E09P1": "S02E09P1: Survival of the Idiots",
+        "S02E09P2": "S02E09P2: Dumped"
     },
     "German": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht",
@@ -113,7 +115,9 @@
         "S02E06P2": "S02E06P2: Das Tentakel-Paradies",
         "S02E07P1": "S02E07P1: Bis zur Ersch\u00f6pfung",
         "S02E07P2": "S02E07P2: Ganoven",
-        "S02E08P1": "S02E08P1: Ein harter Winter"
+        "S02E08P1": "S02E08P1: Weihnachten unter Wasser",
+        "S02E09P1": "S02E09P1: Ein harter Winter",
+        "S02E09P2": "S02E09P2: Allein gelassen"
     },
     "German-English": {
         "S01E01P1": "S01E01P1: Aushilfe gesucht (Help Wanted)",
@@ -171,6 +175,8 @@
         "S02E06P2": "S02E06P2: Das Tentakel-Paradies (Squidville)",
         "S02E07P1": "S02E07P1: Bis zur Ersch\u00f6pfung (Pre-Hibernation Week)",
         "S02E07P2": "S02E07P2: Ganoven (Life of Crime)",
-        "S02E08P1": "S02E08P1: Ein harter Winter (Survival of the Idiots)"
+        "S02E08P1": "S02E08P1: Weihnachten unter Wasser (Christmas Who?)",
+        "S02E09P1": "S02E09P1: Ein harter Winter (Survival of the Idiots)",
+        "S02E09P2": "S02E09P2: Allein gelassen (Dumped)"
     }
 }
