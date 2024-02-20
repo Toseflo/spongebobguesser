@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#image-container {
+    display: flex;
+    width: 100%;
+    height: 60vh; /* Adjust this value as needed */
+    border: none;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    background-size: contain; /* This will prevent the image from being stretched */
+    background-position: center; /* This will center the image */
+    background-repeat: no-repeat; /* This will prevent the image from repeating */
+}
+
+#image-container img {
+    width: 100%; /* This will make the image take up the entire width */
+    height: auto;
+    object-fit: contain; /* This will prevent the image from being stretched */
+}
+
+@media (max-aspect-ratio: 3/2) {
+    #image-container {
+        width: 100%;
+        height: auto;
+        padding-top: 75%; /* Adjust this value as needed based on the aspect ratio of the image without black bars */
+        margin-left: auto;
+        margin-right: auto;
+        overflow-x: hidden; /* This will prevent horizontal scrolling */
+        background-size: cover; /* This will make the image as large as possible while still being contained within the background positioning area */
+        background-position: center; /* This will center the image within the positioning area */
+    }
+}
+
+#lives-left,
+#score,
+#high-score {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 1.3em;
+    caret-color: transparent;
+}
+
+#episode-select {
+    display: block;
+    width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+#episode-select.select2-container {
+    display: block;
+    width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+#language-select,
+#season-select {
+    display: block;
+    width: 210px;
+    margin: 10px auto;
+    padding: 7px;
+    font-size: 1.2em;
+}
+
+#guess-input,
+#episode-select,
+#language-select,
+#season-select {
+    border-radius: 8px;
+}
+
+#guess-button,
+#joker-button,
+#try-again-button,
+#continue-button {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 30px;
+    font-size: 1.5em;
+    border-radius: 8px;
+    caret-color: transparent;
+}
+
+#feedback-text {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#try-again-button,
+#feedback-text,
+#continue-button {
+    display: none;
+}
+
+.select-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    caret-color: transparent;
+}
+
+.select-group label {
+    font-size: 1em;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: -30px auto;
+    width: 80%;
+}
+
+.column {
+    flex: 1;
+    text-align: center;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin: -100px auto;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 80px;
+    margin-top: 20px;
+}
+
+.select2-container .select2-selection--single {
+    height: 50px; /* Set the height to your desired value */
+    padding: 12px; /* Adjust padding as needed */
+    line-height: 1.5; /* Adjust line height as needed */
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: black;
+    font-size: 1.5em;
+    vertical-align: center;
+}
+
+.select2-selection__arrow {
+    font-size: 40px; /* Change the size according to your preference */
+}
