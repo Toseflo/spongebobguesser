@@ -1,0 +1,64 @@
+S01E01P1: Bienvenue à bord
+S01E01P2: Le grand nettoyage
+S01E01P3: Asphyxies en chaîne
+S01E02P1: Sculptures sur bulles
+S01E02P2: Un nouveau comique
+S01E03P1: La pêche à la méduse
+S01E03P2: La faim du Plancton
+S01E04P1: La zizanie
+S01E04P2: Le permis de conduire
+S01E05P1: Les livreurs de pizza
+S01E05P2: On a mangé ma maison
+S01E06P1: Les vieux super héros
+S01E06P2: Le cornichon manquant
+S01E07P1: La jeune recrue
+S01E07P2: Les envahisseurs
+S01E08P1: La fusée
+S01E08P2: Un bruit insupportable
+S01E09P1: L'appel de la nature
+S01E09P2: Le jour des contraires
+S01E10P1: Le gala
+S01E10P2: Le blues du Plancton
+S01E11P1: Les bras gonflables
+S01E11P2: Le fantôme de Carlo
+S01E12P1: Le chaperon
+S01E12P2: L'employé du mois
+S01E13P1: Une peur incontrôlable
+S01E13P2: Un escargot affamé
+S01E14P1: Voyage dans le temps
+S01E14P2: Fous de karaté
+S01E15P1: Rêver sans y être invité
+S01E15P2: Docteur Patrick
+S01E16P1: La Saint-Valentin
+S01E16P2: Le papier
+S01E17P1: La passion du jeu
+S01E17P2: Les bus farceurs
+S01E18P1: Le mal du pays
+S01E18P2: Petit mais costaud
+S01E19P1: Poisson d'avril
+S01E19P2: La spatule de Neptune
+S01E20P1: La pause
+S01E20P2: Le retour de l'Homme Sirène
+S02E01P1: Problèmes de lacets
+S02E01P2: Les joies du dimanche
+S02E02P1: Mauvaise haleine
+S02E02P2: Pearl et ses idées
+S02E03P1: La course au titre
+S02E03P2: Marcel Bubulle
+S02E04P1: Une tarte mortelle
+S02E04P2: La valse des homards
+S02E05P1: Le papillon
+S02E05P2: Les pâtés multicolores
+S02E06P1: L'éponge à sa mamie
+S02E06P2: L'exil
+S02E07P1: Le sport avant le sommeil
+S02E07P2: Voleurs malgré eux
+S02E08P1: Le premier Noël
+S02E09P1: La morte saison
+S02E09P2: L'éponge abandonnée
+S02E10P1: Le permis par K.O
+S02E10P2: Le plus grand fan
+S02E11P1: Les vacances de l'Homme Sirène
+S02E11P2: Dur, dur d'être un comique
+S02E12P1: Bob manque d'air
+S02E12P2: Le canon à perles
