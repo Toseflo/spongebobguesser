@@ -173,7 +173,7 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
                 # Load the image, remove black borders and save it to the destination folder
                 image_source_path = os.path.join(screenshot_folder, episode_code, filename)
                 image = cv2.imread(image_source_path)
-                new_image = crop_black_bars(image)
+                new_image = crop_vertical_black_bars(image)
                 destination_path = os.path.join(image_folder, filename)
                 cv2.imwrite(destination_path, new_image)
 
@@ -258,7 +258,7 @@ def crop_image(image, target_width, target_height):
     return cropped_image
 
 
-def crop_black_bars(image, tolerance=10):
+def crop_vertical_black_bars(image, tolerance=10):
     """
     Crops black bars on the left and right sides of an image, returning the original
     image if no bars are detected.
@@ -290,7 +290,7 @@ def crop_black_bars(image, tolerance=10):
 
     # Crop if both sides have black bars
     if left_edge > 0 or right_edge < gray.shape[1] - 1:
-        return image[:, left_edge:right_edge+1, :]
+        return image[:, left_edge+1:right_edge, :]
     else:
         return image
 
