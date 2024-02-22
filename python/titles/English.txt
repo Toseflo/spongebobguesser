@@ -62,3 +62,19 @@ S02E11P1: Mermaid Man and Barnacle Boy III
 S02E11P2: Squirrel Jokes
 S02E12P1: Pressure
 S02E12P2: The Smoking Peanut
+S02E13P1: Shanghaied
+S02E13P2: Gary Takes a Bath
+S02E14P1: Welcome to the Chum Bucket
+S02E14P2: Frankendoodle
+S02E15P1: The Secret Box
+S02E15P2: Band Geeks
+S02E16P1: Graveyard Shift
+S02E16P2: Krusty Love
+S02E17P1: Procrastination
+S02E17P2: I'm with Stupid
+S02E18P1: Sailor Mouth
+S02E18P2: Artist Unknown
+S02E19P1: Jellyfish Hunter
+S02E19P2: The Fry Cook Games
+S02E20P1: Squid on Strike
+S02E20P2: Sandy, SpongeBob, and the Worm

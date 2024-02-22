@@ -62,3 +62,19 @@ S02E11P1: Les vacances de l'Homme Sirène
 S02E11P2: Dur, dur d'être un comique
 S02E12P1: Bob manque d'air
 S02E12P2: Le canon à perles
+S02E13P1: Le hollandais volant
+S02E13P2: Gary prend un bain
+S02E14P1: Plankton a gagné
+S02E14P2: Le crayon géant
+S02E15P1: La boîte aux secrets
+S02E15P2: L'orchestre
+S02E16P1: Service de nuit
+S02E16P2: Le capitaine amoureux
+S02E17P1: La rédaction
+S02E17P2: Les parents de Patrick
+S02E18P1: La liste des treize mots
+S02E18P2: L'artiste méconnu
+S02E19P1: La confiture de méduses
+S02E19P2: L'affrontement
+S02E20P1: La grève
+S02E20P2: Le lombric géant

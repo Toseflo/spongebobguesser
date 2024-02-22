@@ -62,3 +62,19 @@ S02E11P1: Heldenhafte Urlaubsvertreter
 S02E11P2: Eichhörnchen-Witze
 S02E12P1: Zu Wasser und zu Land
 S02E12P2: Rauchende Erdnüsse
+S02E13P1: Geisterfahrer
+S02E13P2: Die Wanne ist voll
+S02E14P1: Willkommen im Abfalleimer
+S02E14P2: Punkt, Punkt, Komma, Strich…
+S02E15P1: Die Geheimschachtel
+S02E15P2: Hör' mal, wer da spielt
+S02E16P1: Nachtschicht
+S02E16P2: Krosse Liebe
+S02E17P1: Der Aufsatz
+S02E17P2: Einer ist immer der Dumme
+S02E18P1: Unaussprechlich
+S02E18P2: Das Meisterwerk
+S02E19P1: Jäger und Gejagte
+S02E19P2: Der große Tag
+S02E20P1: Thaddäus streikt
+S02E20P2: Sandy, SpongeBob und der Wurm
