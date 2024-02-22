@@ -160,6 +160,10 @@ seasonSelect.on('change', function () {
 });
 
 document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault()
+    }
+
     if (event.key === 'Enter' && !isEnterPressed) {
         isEnterPressed = true;
 
