@@ -99,7 +99,7 @@ fetch('season-keys.json')
     });
 
 function loadEpisodeNames() {
-    selectedEpisode = episodeSelect.val();
+    let selectedEpisode = episodeSelect.val();
     episodeSelect.empty();
 
     allowedEpisodeKeyList = [];
@@ -129,7 +129,7 @@ languageSelect.addEventListener('change', (event) => {
     loadEpisodeNames(event.target.value);
 });
 
-episodeSelect.on('select2:select', function (event) {
+episodeSelect.on('select2:select', function () {
     // This is a workaround to prevent the keydown event from firing when enter is pressed to select an option
     inputEntered = false;
     setTimeout(() => {
@@ -258,7 +258,7 @@ function checkGuess() {
     inputEntered = false;
     if (state !== "game") return;
 
-    guess = episodeSelect.val();
+    let guess = episodeSelect.val();
     if (allowedEpisodeKeyList.includes(guess)) {
         seasonSelect.prop('disabled', true);
 
