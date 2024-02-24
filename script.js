@@ -119,6 +119,8 @@ function loadEpisodeNames() {
 
     if (selectedEpisode) {
         episodeSelect.val(selectedEpisode).trigger('change');
+    } else {
+        episodeSelect.val(null).trigger('change');
     }
 }
 
