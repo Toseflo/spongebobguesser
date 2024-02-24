@@ -154,6 +154,8 @@ seasonSelect.on('change', function () {
         guessButton.style.display = 'block';
         jokerButton.style.display = 'block';
         feedbackText.style.display = 'none';
+        jokerUsesLeft = startingJokers;
+        updateJokerButton(jokerUsesLeft);
     }
 
     previouslyShownEpisodes = [];
