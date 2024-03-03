@@ -78,3 +78,40 @@ S02E19P1: Jellyfish Hunter
 S02E19P2: The Fry Cook Games
 S02E20P1: Squid on Strike
 S02E20P2: Sandy, SpongeBob, and the Worm
+S03E01P1: The Algae's Always Greener
+S03E01P2: SpongeGuard on Duty
+S03E02P1: Club SpongeBob
+S03E02P2: My Pretty Seahorse
+S03E03P1: Just One Bite
+S03E03P2: The Bully
+S03E04P1: Nasty Patty
+S03E04P2: Idiot Box
+S03E05P1: Mermaid Man and Barnacle Boy IV
+S03E05P2: Doing Time
+S03E06P1: Snowball Effect
+S03E06P2: One Krabs Trash
+S03E07P1: As Seen on TV
+S03E07P2: Can You Spare a Dime?
+S03E08P1: No Weenies Allowed
+S03E08P2: Squilliam Returns
+S03E09P1: Krab Borg
+S03E09P2: Rock-A-Bye Bivalve
+S03E10P1: Wet Painters
+S03E10P2: Krusty Krab Training Video
+S03E11P1: Party Pooper Pants
+S03E12P1: Chocolate With Nuts
+S03E12P2: Mermaid Man and Barnacle Boy V
+S03E13P1: New Student Starfish
+S03E13P2: Clams
+S03E14P1: Ugh
+S03E15P1: The Great Snail Race
+S03E15P2: Mid-Life Crustacean
+S03E16P1: Born Again Krabs
+S03E16P2: I Had an Accident
+S03E17P1: Krabby Land
+S03E17P2: The Camping Episode
+S03E18P1: Missing Identity
+S03E18P2: Plankton's Army
+S03E19P1: The Sponge Who Could Fly
+S03E20P1: SpongeBob Meets the Strangler
+S03E20P2: Pranks a Lot

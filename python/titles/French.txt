@@ -78,3 +78,40 @@ S02E19P1: La confiture de méduses
 S02E19P2: L'affrontement
 S02E20P1: La grève
 S02E20P2: Le lombric géant
+S03E01P1: Plankton patron
+S03E01P2: Le sauveteur qui a peur de l'eau
+S03E02P1: Le coqui-magique
+S03E02P2: L'hippocampe
+S03E03P1: Juste une bouchée
+S03E03P2: Le Bob, la brute et la maîtresse
+S03E04P1: Tueurs malgré eux
+S03E04P2: La boîte à tout faire
+S03E05P1: La ceinture magique
+S03E05P2: Madame Puff en prison
+S03E06P1: L'effet boule de neige
+S03E06P2: Le capitaine Krabs fait des affaires
+S03E07P1: Vu à la télé
+S03E07P2: La pièce porte-bonheur
+S03E08P1: Le club des mauviettes
+S03E08P2: Guillaume Calmarchic
+S03E09P1: Bob voit des robots partout
+S03E09P2: Les parents adoptifs
+S03E10P1: Les peintres du dimanche
+S03E10P2: Tout ce qu'un employé doit savoir
+S03E11P1: Bob le roi de la fête
+S03E12P1: Les tablettes de chocola
+S03E12P2: Bernard l'ermite le grand
+S03E13P1: Le nouvel élève
+S03E13P2: Courage, rien n'est jamais perdu
+S03E14P1: Bob l'éponge DC
+S03E15P1: Un escargot pur sang
+S03E15P2: Une nuit mouvementée
+S03E16P1: Incorrigible capitaine Krabs
+S03E16P2: Faut assurer ses arrières
+S03E17P1: La magie de l'été
+S03E17P2: L'ours des mers
+S03E18P1: Mon nom est personne
+S03E18P2: Plankton et son armée
+S03E19P1: L'éponge volante
+S03E20P1: Un malin, malin et demi
+S03E20P2: Les invisibles fantô

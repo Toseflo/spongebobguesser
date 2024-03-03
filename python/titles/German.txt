@@ -78,3 +78,40 @@ S02E19P1: Jäger und Gejagte
 S02E19P2: Der große Tag
 S02E20P1: Thaddäus streikt
 S02E20P2: Sandy, SpongeBob und der Wurm
+S03E01P1: Chef werden ist nicht schwer…
+S03E01P2: Bademeister SpongeBob
+S03E02P1: Club SpongeBob
+S03E02P2: Der Seepferdeflüsterer
+S03E03P1: Nur einen Bissen
+S03E03P2: Der Schlägertyp
+S03E04P1: Besuch vom Gesundheitsamt
+S03E04P2: Der Film im Kopf
+S03E05P1: Der Schrumpf-Tag
+S03E05P2: Gefängnisstrafe
+S03E06P1: Die Schneeballschlacht
+S03E06P2: Trödel
+S03E07P1: Der Fernsehstar
+S03E07P2: Schonungslos ausgenutzt
+S03E08P1: Harte Jungs
+S03E08P2: Der stinkreiche Schnösel
+S03E09P1: Roboter Krabs
+S03E09P2: Eltern werden ist nicht schwer…
+S03E10P1: Anstreicher
+S03E10P2: Das Ausbildungsvideo
+S03E11P1: SpongeBobs Hausparty
+S03E12P1: Verkaufsgenies
+S03E12P2: Blaubarschbube rebelliert
+S03E13P1: Der neue Mitschüler
+S03E13P2: Moby Muschel
+S03E14P1: SpongeBob in der Steinzeit
+S03E15P1: Das große Schneckenrennen
+S03E15P2: Einmal wieder jung sein
+S03E16P1: Geizig bleibt geizig
+S03E16P2: Unfallschäden
+S03E17P1: Sommeranfang
+S03E17P2: Helden beim Zelten
+S03E18P1: Namenlos
+S03E18P2: Planktons Verwandtschaft
+S03E19P1: Der fliegende Schwamm
+S03E20P1: Der Quatschtüten-Würger
+S03E20P2: Die Geister von Bikini Bottom
