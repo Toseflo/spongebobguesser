@@ -104,18 +104,29 @@ function loadEpisodeNames() {
 
     allowedEpisodeKeyList = [];
     for (let seasonKey of allowedSeasonKeyList) {
-        allowedEpisodeKeyList = allowedEpisodeKeyList.concat(seasonsJsonData[seasonKey]);
+        let episodeKeys = seasonsJsonData[seasonKey];
+        allowedEpisodeKeyList = allowedEpisodeKeyList.concat(episodeKeys);
+        keyedEpisodeNames = titlesJsonData[languageSelect.value];
+
+        // Fill the episode select with the episode names for the selected language
+        // Add an option group for each season
+        let seasonGroup = document.createElement('optgroup');
+        let seasonGroupLabel = seasonKey;
+        // If it starts with S, replace it with Season
+        if (seasonGroupLabel.startsWith('S')) {
+            seasonGroupLabel = seasonGroupLabel.replace('S', 'Season ');
+        }
+        seasonGroup.label = seasonGroupLabel;
+        episodeSelect.append(seasonGroup);
+        for (const episodeKey of episodeKeys) {
+            let option = document.createElement('option');
+            option.value = episodeKey; // Set the value of the option
+            option.textContent = keyedEpisodeNames[episodeKey]; // Set the text displayed in the option
+            episodeSelect.append(option);
+        }
     }
     episodeCount = allowedEpisodeKeyList.length;
 
-    // Fill the episode select with the episode names for the selected language
-    keyedEpisodeNames = titlesJsonData[languageSelect.value];
-    for (const episodeKey of allowedEpisodeKeyList) {
-        let option = document.createElement('option');
-        option.value = episodeKey; // Set the value of the option
-        option.textContent = keyedEpisodeNames[episodeKey]; // Set the text displayed in the option
-        episodeSelect.append(option);
-    }
 
     if (selectedEpisode) {
         episodeSelect.val(selectedEpisode).trigger('change');

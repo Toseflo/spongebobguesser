@@ -15,40 +15,44 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="image-container"></div>
-<div class="input-group">
-    <div id="feedback-text"></div>
-    <div>
-        <select id="episode-select"></select>
-    </div>
-</div>
 <div class="container">
-    <div class="column">
-        <div class="select-group">
-            <label for="language-select">Language:</label>
-            <select id="language-select"></select>
+    <div class="left">
+        <div id="image-container"></div>
+        <div class="settings">
+            <div class="column">
+                <label for="season-select" class="bold-label">Select Seasons:</label>
+                <select id="season-select" multiple></select>
+            </div>
+            <div class="column">
+                <label for="language-select" class="bold-label">Select Language:</label>
+                <select id="language-select"></select>
+            </div>
+            <div class="column">
+                <div id="lives-left">Lives: 3</div>
+                <div id="score">Score: 0</div>
+                <div id="high-score">High Score: 0</div>
+            </div>
         </div>
-        <div class="select-group">
-            <label for="season-select">Seasons:</label>
-            <select id="season-select" multiple></select>
+    </div>
+    <div class="right">
+        <div class="buttons">
+            <div class="column">
+                <button id="joker-button" onclick="handleJokerClick() ">Joker</button>
+            </div>
+            <div class="column">
+                <button id="guess-button" onclick="checkGuess()"><b>Guess</b>
+                </button>
+            </div>
+        </div>
+        <div class="fail-button-group">
+            <button id="continue-button" onclick="continueGame()"><b>Continue</b></button>
+            <button id="try-again-button" onclick="resetGame()"><b>Try Again</b></button>
+        </div>
+        <div id="feedback-text"></div>
+        <div class="episode-select-parent">
+            <select id="episode-select"></select>
         </div>
     </div>
-    <div class="column">
-        <button id="joker-button" onclick="handleJokerClick() ">Joker</button>
-    </div>
-    <div class="column">
-        <button id="guess-button" onclick="checkGuess()"><b>Guess</b>
-        </button>
-    </div>
-    <div class="column">
-        <div id="lives-left">Lives: 3</div>
-        <div id="score">Score: 0</div>
-        <div id="high-score">High Score: 0</div>
-    </div>
-</div>
-<div class="button-group">
-    <button id="continue-button" onclick="continueGame()">Continue</button>
-    <button id="try-again-button" onclick="resetGame()"><b>Try Again</b></button>
 </div>
 
 <script src="script.js"></script>
