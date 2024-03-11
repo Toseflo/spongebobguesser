@@ -27,35 +27,16 @@ body {
 }
 
 #image-container {
-    display: flex;
-    height: 75vh; /* Make this value as big as possible. When the value is too large, there will be extra space at the top
-    of the image. */
+    width: 100%; /* Fill the complete available width */
+    height: auto; /* Allow the height to scale accordingly */
+    max-width: 100%; /* Ensure the container doesn't exceed the width of its parent */
     border: none;
     margin: 0 auto;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-size: contain;
+    background-size: contain; /* Adjusted from 'cover' to 'contain' */
     background-position: center;
-    background-repeat: no-repeat;
-}
-
-#image-container img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-@media (max-aspect-ratio: 3/2) {
-    #image-container {
-        width: 100%;
-        height: auto;
-        padding-top: 75%; /* Adjust this value as needed based on the aspect ratio of the image without black bars */
-        margin-left: auto;
-        margin-right: auto;
-        overflow-x: hidden;
-        background-size: cover;
-        background-position: center;
-    }
 }
 
 .bold-label {
@@ -102,6 +83,7 @@ body {
 
 #feedback-text {
     font-size: 1.5em;
+    line-height: 1.5;
     caret-color: transparent;
 }
 
@@ -171,5 +153,16 @@ body {
 }
 
 .select2-container--default .select2-results > .select2-results__options {
-    max-height: calc(100vh - 250px); /* Adjust this value as needed */
+    max-height: calc(100vh - 260px); /* Adjust this value as needed */
+}
+
+.bottom-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px; /* Adjust padding as needed */
+    caret-color: transparent;
+    font-style: italic;
+    /* text color gray */
+    color: #808080;
 }

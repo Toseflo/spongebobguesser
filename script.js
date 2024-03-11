@@ -38,7 +38,7 @@ $(document).ready(function () {
         multiple: true
     });
     episodeSelect.select2({
-        placeholder: 'Guess the episode...',
+        placeholder: 'Guess the episode...'
     });
 });
 
@@ -228,7 +228,20 @@ function getRandomImageKey(imageList) {
 }
 
 function showNewImage(encodedImage) {
+    // Set the background image of the container
     imageContainer.style.backgroundImage = 'url("' + encodedImage + '")';
+
+    // Create a new Image object to calculate aspect ratio
+    var tempImage = new Image();
+    tempImage.src = encodedImage;
+
+    // Once the image is loaded, calculate aspect ratio and adjust container size
+    tempImage.onload = function() {
+        var aspectRatio = tempImage.width / tempImage.height;
+        imageContainer.style.paddingTop = (100 / aspectRatio) + "%";
+    };
+
+    // Reset episode selection and hide feedback text if needed
     episodeSelect.val(null).trigger('change');
     feedbackText.style.display = 'none';
 }
