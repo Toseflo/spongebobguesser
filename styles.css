@@ -105,6 +105,17 @@ body {
     flex: 1;
 }
 
+.credits {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    caret-color: transparent;
+    font-style: italic;
+    color: #808080;
+    text-align: left;
+}
+
 #episode-select {
     width: 100%;
     font-size: 1.3em;
@@ -154,15 +165,4 @@ body {
 
 .select2-container--default .select2-results > .select2-results__options {
     max-height: calc(100vh - 260px); /* Adjust this value as needed */
-}
-
-.bottom-left {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 10px; /* Adjust padding as needed */
-    caret-color: transparent;
-    font-style: italic;
-    /* text color gray */
-    color: #808080;
 }
