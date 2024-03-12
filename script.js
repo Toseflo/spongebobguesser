@@ -8,6 +8,7 @@ const feedbackText = document.getElementById('feedback-text');
 const livesLeftText = document.getElementById('lives-left');
 const scoreElement = document.getElementById('score');
 const highScoreElement = document.getElementById('high-score');
+const seasonSelectParent = document.getElementById('season-select').parentElement;
 const seasonSelect = $('#season-select');
 const episodeSelect = $('#episode-select');
 let imagesJsonData = {};
@@ -53,6 +54,12 @@ tippy(jokerButton, {
     content: 'Show another image from the same episode',
     animation: 'shift-away-subtle',
 });
+
+const seasonSelectTippy = tippy(seasonSelectParent, {
+    content: 'You can select seasons again after getting a game over',
+    animation: 'shift-away-subtle',
+});
+seasonSelectTippy.disable();
 
 livesLeftText.innerText = "Lives: " + livesLeft;
 updateJokerButton(jokerUsesLeft);
@@ -287,6 +294,7 @@ function checkGuess() {
     let guess = episodeSelect.val();
     if (allowedEpisodeKeyList.includes(guess)) {
         seasonSelect.prop('disabled', true);
+        seasonSelectTippy.enable();
 
         if (guess === currentEpisodeKey) {
             score++;
@@ -371,6 +379,7 @@ function resetGame() {
 
     showGameButtons()
     seasonSelect.prop('disabled', false);
+    seasonSelectTippy.disable();
 
     scoreElement.innerText = "Score: " + score;
     highScoreElement.style.color = "#000";

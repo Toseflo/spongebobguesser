@@ -146,17 +146,18 @@ body {
     font-size: 1.2em;
     border-width: 1px;
     border-color: black;
+    min-height: 39px;
 }
 
 .select2-container .select2-selection--multiple {
     height: auto;
-    padding: 6px;
     margin: 10px auto;
     border-radius: 8px;
     border-width: 1px;
     border-color: black;
     vertical-align: center;
     text-align: left;
+    min-height: 39px;
 }
 
 .select2-results__option {
