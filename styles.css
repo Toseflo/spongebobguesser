@@ -116,6 +116,12 @@ body {
     text-align: left;
 }
 
+.credits a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the same color as the parent element */
+    cursor: pointer; /* Change cursor to indicate clickable */
+}
+
 #episode-select {
     width: 100%;
     font-size: 1.3em;
