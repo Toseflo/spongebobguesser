@@ -37,6 +37,7 @@ body {
     align-items: center;
     background-size: contain; /* Adjusted from 'cover' to 'contain' */
     background-position: center;
+    position: relative;
 }
 
 .bold-label {

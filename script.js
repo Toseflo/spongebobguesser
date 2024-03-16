@@ -235,17 +235,24 @@ function getRandomImageKey(imageList) {
 }
 
 function showNewImage(encodedImage) {
-    // Set the background image of the container
-    imageContainer.style.backgroundImage = 'url("' + encodedImage + '")';
+    var imageElement = new Image();
+    imageElement.src = encodedImage;
+    imageElement.style.maxWidth = '100%';
+    imageElement.style.maxHeight = '100%';
 
-    // Create a new Image object to calculate aspect ratio
-    var tempImage = new Image();
-    tempImage.src = encodedImage;
+    // Append the image to the container
+    imageContainer.innerHTML = ''; // Clear previous content
+    imageContainer.appendChild(imageElement);
 
     // Once the image is loaded, calculate aspect ratio and adjust container size
-    tempImage.onload = function() {
-        var aspectRatio = tempImage.width / tempImage.height;
+    imageElement.onload = function() {
+        var aspectRatio = imageElement.width / imageElement.height;
         imageContainer.style.paddingTop = (100 / aspectRatio) + "%";
+
+        // Adjust the position of the image
+        imageElement.style.position = 'absolute';
+        imageElement.style.left = '0';
+        imageElement.style.top = '0';
     };
 
     // Reset episode selection and hide feedback text if needed
