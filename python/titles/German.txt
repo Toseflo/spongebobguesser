@@ -115,3 +115,41 @@ S03E18P2: Planktons Verwandtschaft
 S03E19P1: Der fliegende Schwamm
 S03E20P1: Der Quatschtüten-Würger
 S03E20P2: Die Geister von Bikini Bottom
+S04E01P1: Die Angst vor dem Krabbenburger
+S04E01P2: Harte Schale, weicher Kern
+S04E02P1: Die verlorene Matratze
+S04E02P2: Krabs gegen Plankton
+S04E03P1: Haben Sie diese Schnecke gesehen?
+S04E04P1: Der Geschicklichkeitskran
+S04E04P2: Gute Nachbarn
+S04E05P1: Ausverkauf
+S04E05P2: Kaputt gelacht
+S04E06P1: Der edle Ritter
+S04E07P1: Wo die Liebe hinfällt
+S04E07P2: Meerjungfraumann und Blaubarschbube: Der Film
+S04E08P1: Patrick SchlauKopf
+S04E08P2: Thaddäus TentakelKopf
+S04E09P1: Dem Hotelier ist nichts zu schwer
+S04E09P2: Mrs. Puff, Sie sind gefeuert!
+S04E10P1: Schimpansen ahoi
+S04E10P2: Geisterstunde
+S04E11P1: Der sechzehnte Geburtstag
+S04E11P2: Der König des Karate
+S04E12P1: Alles, was glitzert
+S04E12P2: Wünsch dir was!
+S04E13P1: Ein neues Leben
+S04E13P2: Schneckenwahnsinn
+S04E14P1: Zwangsurlaub
+S04E14P2: Perücken-Panik
+S04E15P1: Die fanthaddäustische Reise
+S04E15P2: Patricia
+S04E16P1: Das Ding
+S04E16P2: Hokuspokus
+S04E17P1: Eine Träne im Schlagloch
+S04E17P2: Königlicher Quatsch
+S04E18P1: Wilde Jungs
+S04E18P2: Beste Fr-einde
+S04E19P1: Der Quallenfischernetzdieb
+S04E19P2: Mini-Thaddäus
+S04E20P1: Der allerschönste Tag
+S04E20P2: Gummilein

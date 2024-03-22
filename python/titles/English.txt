@@ -115,3 +115,41 @@ S03E18P2: Plankton's Army
 S03E19P1: The Sponge Who Could Fly
 S03E20P1: SpongeBob Meets the Strangler
 S03E20P2: Pranks a Lot
+S04E01P1: Fear of a Krabby Patty
+S04E01P2: Shell of a Man
+S04E02P1: The Lost Mattress
+S04E02P2: Krabs vs. Plankton
+S04E03P1: Have You Seen This Snail?
+S04E04P1: Skill Crane
+S04E04P2: Good Neighbors
+S04E05P1: Selling Out
+S04E05P2: Funny Pants
+S04E06P1: Dunces and Dragons
+S04E07P1: Enemy In-Law
+S04E07P2: Mermaid Man and Barnacle Boy VI: The Motion Picture
+S04E08P1: Patrick SmartPants
+S04E08P2: SquidBob TentaclePants
+S04E09P1: Krusty Towers
+S04E09P2: Mrs. Puff, You're Fired
+S04E10P1: Chimps Ahoy
+S04E10P2: Ghost Host
+S04E11P1: Whale of a Birthday
+S04E11P2: Karate Island
+S04E12P1: All that Glitters
+S04E12P2: Wishing You Well
+S04E13P1: New Leaf
+S04E13P2: Once Bitten
+S04E14P1: Bummer Vacation
+S04E14P2: Wigstruck
+S04E15P1: Squidtastic Voyage
+S04E15P2: That's No Lady
+S04E16P1: The Thing
+S04E16P2: Hocus Pocus
+S04E17P1: Driven to Tears
+S04E17P2: Rule of Dumb
+S04E18P1: Born To Be Wild
+S04E18P2: Best FrEnemies
+S04E19P1: The Pink Purloiner
+S04E19P2: Squid Wood
+S04E20P1: Best Day Ever
+S04E20P2: The Gift of Gum

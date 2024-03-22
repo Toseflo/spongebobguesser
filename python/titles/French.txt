@@ -114,4 +114,42 @@ S03E18P1: Mon nom est personne
 S03E18P2: Plankton et son armée
 S03E19P1: L'éponge volante
 S03E20P1: Un malin, malin et demi
-S03E20P2: Les invisibles fantô
+S03E20P2: Les invisibles fantômes
+S04E01P1: Ouverture non-stop !
+S04E01P2: Les gars de la marine
+S04E02P1: Le matelas perdu
+S04E02P2: Le procès
+S04E03P1: La fugue de Gary
+S04E04P1: La pince aux peluches
+S04E04P2: Vive le dimanche
+S04E05P1: Le rachat
+S04E05P2: La boîte à rire
+S04E06P1: Bouffons et dragons
+S04E07P1: Un Plankton chez les Krabs
+S04E07P2: L'Homme Sirène et le Bernard l'ermite IV, le film
+S04E08P1: Patrick devient intelligent
+S04E08P2: Carlo l'éponge et Bob Tentacule
+S04E09P1: L'hôtel du capitaine
+S04E09P2: Madame Puff est renvoyée
+S04E10P1: Une invention, vite !
+S04E10P2: Un fantôme déprimé
+S04E11P1: L'anniversaire de Pearl
+S04E11P2: L'île karaté
+S04E12P1: Spat...
+S04E12P2: Le puit à souhaits 
+S04E13P1: Une nouvelle vie
+S04E13P2: Gare à Gary
+S04E14P1: Allez, dehors ! Vacances...
+S04E14P2: La perruque
+S04E15P1: Voyage au centre d'une pieuvre
+S04E15P2: Le déguisement
+S04E16P1: L'animal sauvage
+S04E16P2: Bob le magicien
+S04E17P1: Le permis de bateau
+S04E17P2: Le roi Patrick
+S04E18P1: La Mou... la... la...
+S04E18P2: La recette du lait aux algues
+S04E19P1: Super fiable
+S04E19P2: Mini Carlo
+S04E20P1: La plus belle des journées
+S04E20P2: Bouboule Un Cadeau Collant
