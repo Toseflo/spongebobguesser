@@ -1,25 +1,23 @@
-function getGamePath() {
-    // Extract the first path element
-    const path = window.location.pathname.split("/")[1];
-
-    // Handle edge cases (empty path or single "/")
-    if (!path) {
-        return window.location.origin + "/game";
+function navigateToGame() {
+    let path = window.location.pathname;
+    if (path.endsWith("index.html")) {
+        path = path.substring(0, path.length - 10);
     }
-
-    // Construct the new URL with "/game" appended
-    return window.location.origin + "/" + path + "/game";
+    // If path ends with /, remove it
+    if (path.endsWith("/")) {
+        path = path.substring(0, path.length - 1);
+    }
+    window.location.href = path + "/game";
 }
 
-function getListPath() {
-    // Extract the first path element
-    const path = window.location.pathname.split("/")[1];
-
-    // Handle edge cases (empty path or single "/")
-    if (!path) {
-        return window.location.origin + "/list";
+function navigateToList() {
+    let path = window.location.pathname;
+    if (path.endsWith("index.html")) {
+        path = path.substring(0, path.length - 10);
+    }
+    if (path.endsWith("/")) {
+        path = path.substring(0, path.length - 1);
     }
 
-    // Construct the new URL with "/game" appended
-    return window.location.origin + "/" + path + "/list";
+    window.location.href = path + "/home";
 }
