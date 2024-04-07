@@ -101,6 +101,7 @@ fetch('season-keys.json')
         }
 
         fetchDone = true;
+        loadConfig();
         loadEpisodeNames();
         showRandomImage();
     });
@@ -144,6 +145,7 @@ function loadEpisodeNames() {
 
 // When the language select changes, load the episode names for the selected language
 languageSelect.addEventListener('change', (event) => {
+    saveConfig();
     loadEpisodeNames(event.target.value);
 });
 
@@ -159,6 +161,7 @@ seasonSelect.on('change', function () {
     allowedSeasonKeyList = $(this).val();
     if (!fetchDone) return;
 
+    saveConfig();
     if (allowedSeasonKeyList.length === 0) {
         episodeSelect.parent().hide();
         episodeSelect.select2('close');
@@ -366,6 +369,28 @@ function checkHighScore() {
     }
     if (score > currentHighScore) {
         setHighScore(score, true);
+    }
+}
+
+function saveConfig() {
+    // Save the selected seasons and language to local storage
+    const selectedSeasons = seasonSelect.val();
+    const selectedLanguage = languageSelect.value;
+    window.localStorage.setItem('selected-seasons', JSON.stringify(selectedSeasons));
+    window.localStorage.setItem('selected-language', selectedLanguage);
+}
+
+function loadConfig() {
+    // Load the selected seasons and language from local storage
+    const selectedSeasons = JSON.parse(window.localStorage.getItem('selected-seasons'));
+    const selectedLanguage = window.localStorage.getItem('selected-language');
+
+    if (selectedSeasons) {
+        seasonSelect.val(selectedSeasons).trigger('change');
+    }
+
+    if (selectedLanguage) {
+        languageSelect.value = selectedLanguage;
     }
 }
 
