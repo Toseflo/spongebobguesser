@@ -2,65 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spongebob Guesser</title>
-    <link rel="icon" href="spongebob-fandom-favicon.png" type="image/png">
-
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away-subtle.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+    <title>Spongebob Guesser Home</title>
+    <link rel="icon" href="home-icon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-    <div class="left">
-        <div id="image-container"></div>
-        <div class="settings">
-            <div class="column">
-                <label for="season-select" class="bold-label">Select Seasons:</label>
-                <div id="season-select-parent">
-                    <select id="season-select" multiple></select>
-                </div>
-            </div>
-            <div class="column">
-                <label for="language-select" class="bold-label">Select Language:</label>
-                <select id="language-select"></select>
-            </div>
-            <div class="column">
-                <div id="lives-left">Lives: 3</div>
-                <div id="score">Score: 0</div>
-                <div id="high-score">High Score: 0</div>
-            </div>
-        </div>
-    </div>
-    <div class="right">
-        <div class="buttons">
-            <div class="column">
-                <button id="joker-button" onclick="handleJokerClick() ">Joker</button>
-            </div>
-            <div class="column">
-                <button id="guess-button" onclick="checkGuess()"><b>Guess</b>
-                </button>
-            </div>
-        </div>
-        <div class="fail-button-group">
-            <button id="continue-button" onclick="continueGame()"><b>Continue</b></button>
-            <button id="try-again-button" onclick="resetGame()"><b>Try Again</b></button>
-        </div>
-        <div id="feedback-text"></div>
-        <div class="episode-select-parent">
-            <select id="episode-select"></select>
-        </div>
+    <h1>Welcome to Spongebob Guesser!</h1>
+    <div class="buttons">
+        <button id="start-button" onclick="window.location.href = '/game'">Start Game</button>
+        <button id="list-button" onclick="window.location.href = '/list'">View Image List</button>
     </div>
 </div>
 <div class="credits">
     <a href="https://github.com/Toseflo/spongebobguesser" target="_blank">Spongebob Guesser by Toseflo & HolyAndOnly</a>
 </div>
 
-<script src="script.js"></script>
+<script src="home.js"></script>
 </body>
 </html>

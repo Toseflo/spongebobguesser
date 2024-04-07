@@ -154,7 +154,7 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
 
     # Create the image list JSON file and copy the images to the destination folder
     image_list = {}
-    reverse_image_lookup = {} # Used later in code to find the original folder of an image
+    reverse_image_lookup = {}  # Used later in code to find the original folder of an image
     for episode_code in episode_codes:
         image_list[episode_code] = []
         printed_conversion = False
@@ -175,7 +175,9 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
                 image = cv2.imread(image_source_path)
                 new_image = crop_vertical_black_bars(image)
                 destination_path = os.path.join(image_folder, filename)
-                cv2.imwrite(destination_path, new_image)
+                # Save image as progressive jpg with compression level 80
+                cv2.imwrite(destination_path, new_image, [int(cv2.IMWRITE_JPEG_QUALITY), 90,
+                                                          int(cv2.IMWRITE_JPEG_PROGRESSIVE), 1])
 
     # Save the image list to a JSON file
     with open(image_list_path, 'w') as f:
@@ -212,14 +214,16 @@ def assemble_image_data(screenshot_folder, titles_folder, episode_titles_path,
             better_output_strings.append(output_string)
 
         # Resize the images to the average dimensions
-        print(f"Resizing {len(better_output_strings)} images to the average dimensions ({average_width}x{average_height}):")
+        print(
+            f"Resizing {len(better_output_strings)} images to the average dimensions ({average_width}x{average_height}):")
         print(f"  {better_output_strings}")
         for filename in wrong_dimensions:
             original_folder = reverse_image_lookup[filename]
             original_image_path = os.path.join(screenshot_folder, original_folder, filename)
             original_image = cv2.imread(original_image_path)
             cropped_image = crop_image(original_image, average_width, average_height)
-            cv2.imwrite(os.path.join(image_folder, filename), cropped_image)
+            cv2.imwrite(os.path.join(image_folder, filename), cropped_image, [int(cv2.IMWRITE_JPEG_QUALITY), 90,
+                                                                              int(cv2.IMWRITE_JPEG_PROGRESSIVE), 1])
 
 
 def crop_image(image, target_width, target_height):
@@ -290,7 +294,7 @@ def crop_vertical_black_bars(image, tolerance=10):
 
     # Crop if both sides have black bars
     if left_edge > 0 or right_edge < gray.shape[1] - 1:
-        return image[:, left_edge+1:right_edge, :]
+        return image[:, left_edge + 1:right_edge, :]
     else:
         return image
 
@@ -299,7 +303,7 @@ python_folder = os.getcwd()
 python_screenshot_folder = os.path.join(python_folder, "screenshots")
 python_titles_folder = os.path.join(python_folder, "titles")
 
-website_folder = os.path.dirname(os.getcwd())
+website_folder = os.path.join(os.path.dirname(os.getcwd()), "game")
 website_image_folder = os.path.join(website_folder, "randomframes")
 website_image_list = os.path.join(website_folder, "image-list.json")
 website_episode_titles = os.path.join(website_folder, "episode-titles.json")

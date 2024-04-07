@@ -1,0 +1,211 @@
+@font-face {
+    font-family: SpongeboyRegular;
+    src: url(../SpongeboyRegular.otf);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(to bottom right, #7eefed, #017df0);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    cursor: default;
+}
+
+.random-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.home-icon-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    width: 60px;
+}
+
+#home-icon {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.left {
+    caret-color: transparent;
+}
+
+.left,
+.right {
+    flex: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#image-container {
+    width: 100%; /* Fill the complete available width */
+    height: auto; /* Allow the height to scale accordingly */
+    max-width: 100%; /* Ensure the container doesn't exceed the width of its parent */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain; /* Adjusted from 'cover' to 'contain' */
+    background-position: center;
+    position: relative;
+}
+
+.bold-label {
+    font-weight: bold;
+}
+
+.fail-button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+#lives-left,
+#score,
+#high-score {
+    font-size: 1.3em;
+    margin: auto;
+    font-weight: bold;
+}
+
+#score {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#guess-input,
+#episode-select,
+#language-select,
+#season-select {
+    border-radius: 8px;
+}
+
+#guess-button,
+#joker-button,
+#try-again-button,
+#continue-button {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 30px;
+    font-size: 1.5em;
+    border-radius: 8px;
+    caret-color: transparent;
+    cursor: pointer;
+}
+
+#feedback-text {
+    font-size: 1.5em;
+    line-height: 1.5;
+    caret-color: transparent;
+}
+
+#try-again-button,
+#feedback-text,
+#continue-button {
+    display: none;
+}
+
+.settings,
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+
+.column {
+    flex: 1;
+}
+
+.credits {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    caret-color: transparent;
+    font-style: italic;
+    color: darkslategray;
+    text-align: left;
+}
+
+.credits a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the same color as the parent element */
+    cursor: pointer; /* Change cursor to indicate clickable */
+}
+
+#episode-select {
+    width: 100%;
+    font-size: 1.3em;
+}
+
+.episode-select-parent {
+    margin: auto;
+}
+
+.select2-container .select2-selection--single {
+    height: auto;
+    padding: 12px;
+    line-height: 1.5;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: black;
+    font-size: 1.5em;
+    vertical-align: center;
+    text-align: left;
+}
+
+#language-select,
+#season-select {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 7px;
+    font-size: 1.2em;
+    border-width: 1px;
+    border-color: black;
+    min-height: 39px;
+    cursor: pointer;
+}
+
+.select2-container .select2-selection--multiple {
+    height: auto;
+    margin: 10px auto;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: black;
+    vertical-align: center;
+    text-align: left;
+    min-height: 39px;
+}
+
+.select2-results__option {
+    text-align: left;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+    max-height: calc(100vh - 260px); /* Adjust this value as needed */
+}
