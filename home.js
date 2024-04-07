@@ -19,5 +19,5 @@ function navigateToList() {
         path = path.substring(0, path.length - 1);
     }
 
-    window.location.href = path + "/home";
+    window.location.href = path + "/list";
 }
