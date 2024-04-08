@@ -394,12 +394,16 @@ function loadConfig() {
     const selectedSeasons = JSON.parse(window.localStorage.getItem('selected-seasons'));
     const selectedLanguage = window.localStorage.getItem('selected-language');
 
-    if (selectedSeasons) {
+    if (selectedSeasons && selectedSeasons.length > 0) {
         seasonSelect.val(selectedSeasons).trigger('change');
     }
 
     if (selectedLanguage) {
-        languageSelect.value = selectedLanguage;
+        // Test if the language is in the language select
+        const languageOption = languageSelect.querySelector('option[value="' + selectedLanguage + '"]');
+        if (languageOption) {
+            languageSelect.value = selectedLanguage;
+        }
     }
 }
 
