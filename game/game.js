@@ -170,7 +170,6 @@ seasonSelect.on('change', function () {
     allowedSeasonKeyList = $(this).val();
     if (!fetchDone) return;
 
-    saveConfig();
     if (allowedSeasonKeyList.length === 0) {
         episodeSelect.parent().hide();
         episodeSelect.select2('close');
@@ -180,6 +179,7 @@ seasonSelect.on('change', function () {
         feedbackText.style.display = 'block';
         return;
     } else {
+        saveConfig();
         episodeSelect.parent().show();
         guessButton.style.display = 'block';
         jokerButton.style.display = 'block';
