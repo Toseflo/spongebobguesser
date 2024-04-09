@@ -40,13 +40,9 @@
         </div>
     </div>
     <div class="right">
-        <div class="buttons">
-            <div class="column">
-                <button id="guess-button" onclick="checkGuess()"><b>Guess</b></button>
-            </div>
-            <div class="column">
-                <button id="joker-button" onclick="handleJokerClick() ">Joker</button>
-            </div>
+        <div class="game-button-group" id="game-button-group">
+            <button id="guess-button" onclick="checkGuess()"><b>Guess</b></button>
+            <button id="joker-button" onclick="handleJokerClick() ">Joker</button>
         </div>
         <div class="fail-button-group">
             <button id="continue-button" onclick="continueGame()"><b>Continue</b></button>

@@ -1,10 +1,11 @@
 const languageSelect = document.getElementById('language-select');
 const imageContainer = document.getElementById('image-container');
 const guessButton = document.getElementById('guess-button');
+const jokerButton = document.getElementById('joker-button');
+const gameButtonGroup = document.getElementById('game-button-group');
 const tryAgainButton = document.getElementById('try-again-button');
 const continueButton = document.getElementById('continue-button');
 const showMoreImagesButton = document.getElementById('show-images-button');
-const jokerButton = document.getElementById('joker-button');
 const feedbackText = document.getElementById('feedback-text');
 const livesLeftText = document.getElementById('lives-left');
 const scoreElement = document.getElementById('score');
@@ -253,7 +254,7 @@ function getRandomImageKey(imageList) {
 }
 
 function showNewImage(encodedImage) {
-    var imageElement = new Image();
+    let imageElement = new Image();
     imageElement.src = encodedImage;
     imageElement.style.maxWidth = '100%';
     imageElement.style.maxHeight = '100%';
@@ -264,7 +265,7 @@ function showNewImage(encodedImage) {
 
     // Once the image is loaded, calculate aspect ratio and adjust container size
     imageElement.onload = function() {
-        var aspectRatio = imageElement.width / imageElement.height;
+        let aspectRatio = imageElement.width / imageElement.height;
         imageContainer.style.paddingTop = (100 / aspectRatio) + "%";
 
         // Adjust the position of the image
@@ -334,8 +335,7 @@ function checkGuess() {
         } else {
             episodeSelect.parent().hide();
             episodeSelect.select2('close');
-            guessButton.style.display = 'none';
-            jokerButton.style.display = 'none';
+            gameButtonGroup.style.display = 'none';
             livesLeft--;
             livesLeftText.innerText = "Lives: " + livesLeft;
             let currentEpisodeName = keyedEpisodeNames[currentEpisodeKey];
@@ -354,6 +354,7 @@ function checkGuess() {
                 state = "continue";
             } else {
                 tryAgainButton.style.display = 'block';
+                showMoreImagesButton.style.display = 'block';
                 feedbackText.innerHTML = responseString + "<br><b>Game over</b>.";
                 feedbackText.style.display = 'block';
                 state = "game-over";
@@ -417,8 +418,7 @@ function loadConfig() {
 function showGameButtons() {
     state = "game";
     episodeSelect.parent().show();
-    guessButton.style.display = 'block';
-    jokerButton.style.display = 'block';
+    gameButtonGroup.style.display = 'flex';
     tryAgainButton.style.display = 'none';
     continueButton.style.display = 'none';
     showMoreImagesButton.style.display = 'none';
@@ -449,7 +449,7 @@ function continueGame() {
 }
 
 function showMoreImages() {
-    if (state !== "continue") return;
+    if (state !== "continue" && state !== "game-over") return;
     // Complicated path manipulation to make it work in development environment and on GitHub Pages
     // (I don't know what I'm doing)
 
@@ -476,7 +476,7 @@ function placeRandomFlowers() {
     const flowerList = ['flower1.png', 'flower2.png', 'flower3.png', 'flower4.png', 'flower5.png', 'flower6.png'];
     const backgroundDiv = document.getElementById('random-background');
     const existingFlowers = [];
-2
+
     for (let i = 0; i < 20; i++) {
         const randomFlower = document.createElement('img');
         // Add the image to the div
