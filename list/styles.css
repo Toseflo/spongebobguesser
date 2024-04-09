@@ -4,26 +4,114 @@
 }
 
 body {
-    font-family: SpongeboyRegular, Arial, sans-serif;
-    height: 100vh;
+    font-family: Arial, sans-serif;
+    height: 100%;
     margin: 0;
-    padding: 0;
-}
-
-.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    text-align: center;
 }
 
-h1 {
-    font-size: 3em;
-    color: darkslategray;
-    text-shadow: 2px 2px 2px #000;
-    text-align: center;
-    cursor: default;
+#feedback-text {
+    font-size: 1.5em;
+    line-height: 1.5;
+    caret-color: transparent;
+    display: none;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.left {
+    caret-color: transparent;
+}
+
+.left,
+.right {
+    flex: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.bold-label {
+    font-weight: bold;
+}
+
+#image-container {
+    width: 100%; /* Fill the complete available width */
+    height: auto; /* Allow the height to scale accordingly */
+    max-width: 100%; /* Ensure the container doesn't exceed the width of its parent */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: contain; /* Adjusted from 'cover' to 'contain' */
+    background-position: center;
+    position: relative;
+}
+
+#episode-select,
+#language-select {
+    border-radius: 8px;
+}
+
+#episode-select {
+    width: 100%;
+    margin: 20px auto;
+    font-size: 1.3em;
+}
+
+.settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+
+.column {
+    flex: 1;
+}
+
+.episode-select-parent {
+    margin: auto;
+}
+
+.select2-container .select2-selection--single {
+    height: auto;
+    padding: 12px;
+    line-height: 1.5;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: black;
+    font-size: 1.5em;
+    vertical-align: center;
+    text-align: left;
+}
+
+#language-select,
+#season-select {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 7px;
+    font-size: 1.2em;
+    border-width: 1px;
+    border-color: black;
+    min-height: 39px;
+    cursor: pointer;
+}
+
+.select2-results__option {
+    text-align: left;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+    max-height: calc(100vh - 260px); /* Adjust this value as needed */
 }
 
 .credits {
@@ -55,4 +143,45 @@ h1 {
 #home-icon {
     width: 100%;
     height: auto;
+}
+
+.number-selects {
+    /* Align items horizontally, evenly spaced around the center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.image-buttons,
+.episode-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    width: 50%;
+    vertical-align: center;
+    align-items: center;
+}
+
+#previous-episode,
+#next-episode,
+#previous-image,
+#next-image {
+    display: block;
+    margin: 0 20px;
+    padding: 13px 22px;
+    font-size: 2em;
+    border-radius: 8px;
+    caret-color: transparent;
+    cursor: pointer;
+}
+
+#image-number,
+#episode-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.5;
+    caret-color: transparent;
+    cursor: default;
 }

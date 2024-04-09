@@ -76,13 +76,6 @@ body {
     font-weight: bold;
 }
 
-.fail-button-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-}
-
 #lives-left,
 #score,
 #high-score {
@@ -96,7 +89,6 @@ body {
     margin-bottom: 10px;
 }
 
-#guess-input,
 #episode-select,
 #language-select,
 #season-select {
@@ -106,7 +98,8 @@ body {
 #guess-button,
 #joker-button,
 #try-again-button,
-#continue-button {
+#continue-button,
+#show-images-button {
     display: block;
     margin: 0 auto;
     padding: 20px 30px;
@@ -124,7 +117,8 @@ body {
 
 #try-again-button,
 #feedback-text,
-#continue-button {
+#continue-button,
+#show-images-button {
     display: none;
 }
 
@@ -133,6 +127,18 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 20px auto;
+}
+
+.buttons {
+    width: 90%;
+}
+
+.fail-button-group {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 20px auto;
 }
 

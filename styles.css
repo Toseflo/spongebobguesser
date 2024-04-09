@@ -8,7 +8,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url("home.jpg");
+    background-image: url("home-background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;

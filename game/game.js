@@ -3,6 +3,7 @@ const imageContainer = document.getElementById('image-container');
 const guessButton = document.getElementById('guess-button');
 const tryAgainButton = document.getElementById('try-again-button');
 const continueButton = document.getElementById('continue-button');
+const showMoreImagesButton = document.getElementById('show-images-button');
 const jokerButton = document.getElementById('joker-button');
 const feedbackText = document.getElementById('feedback-text');
 const livesLeftText = document.getElementById('lives-left');
@@ -66,6 +67,11 @@ seasonSelectTippy.disable();
 
 tippy(homeIcon, {
     content: 'Back to the homepage',
+    animation: 'shift-away-subtle',
+});
+
+tippy(showMoreImagesButton, {
+    content: 'Open the image list to view more images',
     animation: 'shift-away-subtle',
 });
 
@@ -344,6 +350,7 @@ function checkGuess() {
                 }
                 feedbackText.style.display = 'block';
                 continueButton.style.display = 'block';
+                showMoreImagesButton.style.display = 'block';
                 state = "continue";
             } else {
                 tryAgainButton.style.display = 'block';
@@ -414,6 +421,7 @@ function showGameButtons() {
     jokerButton.style.display = 'block';
     tryAgainButton.style.display = 'none';
     continueButton.style.display = 'none';
+    showMoreImagesButton.style.display = 'none';
 }
 
 function resetGame() {
@@ -438,6 +446,30 @@ function continueGame() {
     if (state !== "continue") return;
     showGameButtons()
     showRandomImage();
+}
+
+function showMoreImages() {
+    if (state !== "continue") return;
+    // Complicated path manipulation to make it work in development environment and on GitHub Pages
+    // (I don't know what I'm doing)
+
+    window.localStorage.setItem('list-selected-episode', currentEpisodeKey);
+    let path = window.location.pathname;
+    if (path.endsWith("/")) {
+        path = path.substring(0, path.length - 1);
+    }
+    if (path.endsWith("/index.html")) {
+        path = path.substring(0, path.length - 11);
+    }
+    if(path.endsWith("/game")) {
+        path = path.substring(0, path.length - 5);
+    }
+    if (path.endsWith("/")) {
+        path = path.substring(0, path.length - 1);
+    }
+
+    // Open in new tab
+    window.open(path + "/list");
 }
 
 function placeRandomFlowers() {

@@ -3,16 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Spongebob Guesser Image List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../home-icon.png" type="image/png">
+
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/shift-away-subtle.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-    <h1>Coming Soon!</h1>
+    <div class="left">
+        <div id="image-container"></div>
+        <div class="settings">
+            <div class="column">
+                <label for="language-select" class="bold-label">Select Language:</label>
+                <select id="language-select"></select>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="number-selects">
+            <div class="image-buttons">
+                <button id="previous-image" onclick="prevImage()"><b><</b></button>
+                <div id="image-number">Image<br>1/1</div>
+                <button id="next-image" onclick="nextImage()"><b>></b></button>
+            </div>
+            <div class="episode-buttons">
+                <button id="previous-episode" onclick="prevEpisode()"><b><</b></button>
+                <div id="episode-number">Episode<br>1/1</div>
+                <button id="next-episode" onclick="nextEpisode()"><b>></b></button>
+            </div>
+        </div>
+        <div id="feedback-text"></div>
+        <div class="episode-select-parent">
+            <select id="episode-select"></select>
+        </div>
+    </div>
 </div>
 
 <div class="credits">
-    <a href="https://github.com/Toseflo/spongebobguesser" target="_blank">Spongebob Guesser by Toseflo & HolyAndOnly</a>
+    <a href="https://github.com/Toseflo/spongebobguesser" target="_blank">Spongebob Guesser by Toseflo &
+        HolyAndOnly</a>
 </div>
 <div class="home-icon-container">
     <a href="../"><img src="../home-icon.png" alt="Home Icon" id="home-icon"></a>
