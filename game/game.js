@@ -5,7 +5,7 @@ const jokerButton = document.getElementById('joker-button');
 const gameButtonGroup = document.getElementById('game-button-group');
 const tryAgainButton = document.getElementById('try-again-button');
 const continueButton = document.getElementById('continue-button');
-const showMoreImagesButton = document.getElementById('show-images-button');
+const openImageListButton = document.getElementById('image-list-button');
 const feedbackText = document.getElementById('feedback-text');
 const livesLeftText = document.getElementById('lives-left');
 const scoreElement = document.getElementById('score');
@@ -71,8 +71,8 @@ tippy(homeIcon, {
     animation: 'shift-away-subtle',
 });
 
-tippy(showMoreImagesButton, {
-    content: 'Open the image list to view more images',
+tippy(openImageListButton, {
+    content: 'Open the image list in a new tab',
     animation: 'shift-away-subtle',
 });
 
@@ -350,11 +350,11 @@ function checkGuess() {
                 }
                 feedbackText.style.display = 'block';
                 continueButton.style.display = 'block';
-                showMoreImagesButton.style.display = 'block';
+                openImageListButton.style.display = 'block';
                 state = "continue";
             } else {
                 tryAgainButton.style.display = 'block';
-                showMoreImagesButton.style.display = 'block';
+                openImageListButton.style.display = 'block';
                 feedbackText.innerHTML = responseString + "<br><b>Game over</b>.";
                 feedbackText.style.display = 'block';
                 state = "game-over";
@@ -421,7 +421,7 @@ function showGameButtons() {
     gameButtonGroup.style.display = 'flex';
     tryAgainButton.style.display = 'none';
     continueButton.style.display = 'none';
-    showMoreImagesButton.style.display = 'none';
+    openImageListButton.style.display = 'none';
 }
 
 function resetGame() {
@@ -448,7 +448,7 @@ function continueGame() {
     showRandomImage();
 }
 
-function showMoreImages() {
+function openImageList() {
     if (state !== "continue" && state !== "game-over") return;
     // Complicated path manipulation to make it work in development environment and on GitHub Pages
     // (I don't know what I'm doing)
