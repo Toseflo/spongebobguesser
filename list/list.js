@@ -17,6 +17,8 @@ let maxEpisodeNumber = 0;
 
 let fetchDone = false;
 
+placeRandomFlowers();
+
 $(document).ready(function () {
     episodeSelect.select2({
         placeholder: 'Select an episode to view the images',
@@ -225,4 +227,66 @@ selectedEpisodeNumber--;
     episodeSelect.val(selectedEpisodeNumber).trigger('change');
     updateEpisodeNumber();
     showImage();
+}
+
+function placeRandomFlowers() {
+    const flowerList = ['flower1.png', 'flower2.png', 'flower3.png', 'flower4.png', 'flower5.png', 'flower6.png'];
+    const backgroundDiv = document.getElementById('random-background');
+    const existingFlowers = [];
+
+    for (let i = 0; i < 20; i++) {
+        const randomFlower = document.createElement('img');
+        // Add the image to the div
+        randomFlower.src = '../game/background/' + flowerList[Math.floor(Math.random() * flowerList.length)];
+        randomFlower.style.position = 'absolute';
+
+        let left, top, width;
+        let attempts = 0;
+        // Generate new position and size until it doesn't overlap or max attempts reached
+        while (attempts < 20) {
+            left = Math.random() * 100;
+            top = Math.random() * 100;
+            width = Math.random() * 12 + 2;
+
+            if (!checkCollision(left, top, width, existingFlowers)) {
+                break; // No collision, exit loop
+            }
+            attempts++;
+        }
+
+        if (attempts === 20) {
+            randomFlower.remove();
+            continue; // Skip this flower if max attempts reached
+        }
+
+        randomFlower.style.left = left + '%';
+        randomFlower.style.top = top + '%';
+        randomFlower.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+        randomFlower.style.width = width + 'vw';
+        randomFlower.style.userSelect = 'none';
+        randomFlower.style.pointerEvents = 'none';
+
+        backgroundDiv.appendChild(randomFlower);
+        existingFlowers.push({ left, top, width });
+    }
+}
+
+// Function to check collision with existing flowers
+function checkCollision(newLeft, newTop, newWidth, existingFlowers) {
+    for (const flower of existingFlowers) {
+        const left1 = newLeft;
+        const right1 = newLeft + 2*newWidth;
+        const top1 = newTop;
+        const bottom1 = newTop + 2*newWidth;
+
+        const left2 = flower.left;
+        const right2 = flower.left + 2*flower.width;
+        const top2 = flower.top;
+        const bottom2 = flower.top + 2*flower.width;
+
+        if (!(left1 >= right2 || right1 <= left2 || top1 >= bottom2 || bottom1 <= top2)) {
+            return true; // Collision detected
+        }
+    }
+    return false; // No collision detected
 }
